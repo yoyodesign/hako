@@ -1,0 +1,42 @@
+hover($block = false)
+	&:hover
+		{$block} unless $block is false
+		{block}
+
+on-interaction($block = false)
+	&:hover
+	&:focus
+		{$block} unless $block is false
+		{block}
+
+on-focus($block = false)
+	&:focus
+		{$block} unless $block is false
+		{block}
+
+not-on-focus($block = false)
+	&:not(:focus)
+		{$block} unless $block is false
+		{block}
+
+faux-hover($whenTarget = false, $block = false)
+	$selector = selector()
+
+	if $whenTarget
+		$selector += ".faux-link-target"
+
+	/.faux-link
+		+on-interaction()
+			~ {$selector}
+			~ * {$selector}
+				{$block} unless $block is false
+				{block}
+
+hover-or-faux-hover($whenTarget = false, $block = false)
+	+on-interaction()
+		{$block} unless $block is false
+		{block}
+
+	+faux-hover($whenTarget)
+		{$block} unless $block is false
+		{block}

@@ -1,0 +1,29 @@
+if "label" in $yoyoForms
+	label
+		$label = $yoyoForms["label"]
+
+		display block
+		padding $label["padding"] if "padding" in $label
+
+		cursor pointer
+
+		text-align left
+		font-size $label["fontSize"] if "fontSize" in $label
+		font-weight $label["fontWeight"] if "fontWeight" in $label
+		color $label["color"] if "color" in $label
+
+		&:active
+			+ [placeholder]
+				&::placeholder
+					// This prevents a very quick text flicker when clicking a label
+					color transparent !important
+
+		&.label--disabled
+			cursor default
+
+		&.label--inline
+			display inline-block
+
+			+ input
+				display inline-block
+				width auto

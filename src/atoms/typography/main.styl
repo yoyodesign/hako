@@ -1,0 +1,51 @@
+if "body" in $yoyoTypography
+	body
+		style-typography($yoyoTypography["body"])
+
+if "p" in $yoyoTypography
+	p
+		style-typography($yoyoTypography["p"])
+
+		&:last-child
+			margin-bottom 0
+
+if "strong" in $yoyoTypography
+	strong
+		style-typography($yoyoTypography["strong"])
+
+if "hr" in $yoyoTypography
+	hr
+		$hr = $yoyoTypography["hr"]
+
+		display block
+		padding $hr["padding"] if "padding" in $hr
+		margin $hr["margin"] if "margin" in $hr
+		border-width $hr["borderWidth"] if "borderWidth" in $hr
+		border-style $hr["borderStyle"] if "borderStyle" in $hr
+		border-color $hr["borderColor"] if "borderColor" in $hr
+
+em
+i
+	font-style italic
+
+sub
+sup
+	font-size 75%
+
+code
+	font-family monospace
+
+abbr
+acronym
+	&[title]
+		text-transform uppercase
+		cursor help
+
+abbr
+	text-transform none
+
+dfn
+	font-style normal
+
+a
+	word-wrap break-word

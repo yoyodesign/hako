@@ -1,0 +1,25 @@
+visuallyhidden()
+	position absolute
+	overflow hidden
+	padding 0
+	width 1px
+	height 1px
+	margin -1px
+	border 0
+	clip rect(0, 0, 0, 0)
+
+visuallyshow()
+	position static
+	overflow visible
+	width auto
+	height auto
+	margin 0
+	clip auto
+
+no-js()
+	html.no-js &
+		{block}
+
+js-only()
+	html:not(.no-js) &
+		{block}

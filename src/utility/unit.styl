@@ -1,0 +1,19 @@
+-is-unit($value, $unit)
+	return unit($value) is $unit
+
+-em($value, $base = 16)
+	return unit($value / $base, "em") if -is-unit($value, "px")
+	return $value
+
+-rem($value, $base = 16)
+	return unit($value / $base, "rem") if -is-unit($value, "px")
+	return $value
+
+-unitless-lineheight($value, $pxValue)
+	return round($value / $pxValue, 2)
+
+-negative($value)
+	return $value * -1
+
+-percentage($decimal)
+	return $decimal * 100%

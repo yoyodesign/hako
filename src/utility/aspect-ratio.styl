@@ -1,0 +1,46 @@
+enforce-aspect-ratio($ratio)
+	position relative
+	overflow hidden
+
+	+apply-aspect-ratio($ratio)
+		display block
+		height 0
+		content ""
+
+apply-aspect-ratio($ratio)
+	&:after
+		padding-bottom $ratio
+
+		{block}
+
+fit-in-element()
+	width auto
+	height auto
+	max-width 125%
+	min-width 100%
+	min-height 100%
+
+	center-x-y()
+
+	@supports (object-fit cover)
+		position absolute
+		top 0
+		left 0
+		max-width 100%
+		max-height 100%
+
+		transform none
+
+enforce-media-ratio($ratio, $mediaType, $fit = false)
+	enforce-aspect-ratio($ratio);
+
+	{$mediaType}
+		fit-in-element($ratio)
+
+		object-fit $fit if $fit != false
+
+enforce-image-ratio($ratio, $fit = false)
+	enforce-media-ratio($ratio, "img, figure", $fit)
+
+enforce-video-ratio($ratio, $fit = false)
+	enforce-media-ratio($ratio, "video", $fit)

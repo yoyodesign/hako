@@ -1,0 +1,19 @@
+.media
+	$root = selector()
+
+	&
+	&__body
+		overflow hidden
+
+	&:not({$root}--rev)
+		&__image
+		> img
+			float left
+
+	&--rev
+		{$root}__image
+		> img
+			float right
+
+	img
+		display block

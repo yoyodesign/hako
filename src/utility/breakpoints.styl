@@ -1,0 +1,95 @@
+/***************************
+ * PRIVATE HELPER FUNCTIONS
+ **************************/
+
+-is-string($value)
+	return typeof($value) is not "unit" and ($value is a "string" or $value is a "ident")
+
+-get-scale-number($scaleName)
+	return $n + 1 if $item is $scaleName for $item, $n in $yoyoBreakpoints.scaleNames
+	return false
+
+-convert-to($toUnit = null, $value = null, $context = $yoyoBreakpoints.baseFontSize)
+	$fromUnit = unit($value)
+
+	return $value if $toUnit is $fromUnit
+
+	if $toUnit in ("em" "rem")
+		return $value if $fromUnit in ("em" "rem")
+		return unit(($value / $context), $toUnit)
+	if $toUnit is "px"
+		return unit(($value * $context), "px")
+
+-on-scale($n)
+	return unit($n) is ""
+
+-larger-than-scale($n)
+	return ($n > (length($yoyoBreakpoints.scale) - 1)) and -on-scale($n)
+
+-is-zero($n)
+	return $n is 0
+
+-overlap-shift($antiOverlap = null, $n = null)
+	$shiftUnit = unit($n)
+
+	$antiOverlap = 0px unless $antiOverlap
+	$antiOverlap = 1px if $antiOverlap is true
+
+	return -convert-to($shiftUnit, $antiOverlap) if length($antiOverlap) is 1
+	return $val if unit($val) is $shiftUnit for $val in $antiOverlap
+
+-adjust-overlap($antiOverlap = null, $n = null, $side = "min")
+	$shift = -overlap-shift($antiOverlap, $n)
+
+	if ($side is "min" and $shift > 0) or ($side is "max" and $shift < 0)
+		$n = $n + $shift
+	return $n
+
+-convert-string-to-scale-number($str)
+	return -is-string($str) ? -get-scale-number($str) : $str
+
+
+/***************************
+ * PUBLIC MIXINS
+ **************************/
+
+between-bp($min = null, $max = null, $forIe8 = false, $block = false, $antiOverlap = $yoyoBreakpoints.antiOverlap)
+	$min = -convert-string-to-scale-number($min)
+	$max = -convert-string-to-scale-number($max)
+
+	-$min  = $yoyoBreakpoints.scale[$min - 1] unless -is-zero($min) or (not -on-scale($min))
+	-$max  = $yoyoBreakpoints.scale[$max - 1] unless not -on-scale($max - 1)
+	-$min ?= $min
+	-$max ?= $max
+
+	$condition = "screen"
+
+	unless -$min is 0
+		-$min = -convert-to("em", -$min) if $yoyoBreakpoints.emBreakpoints
+		-$min = -adjust-overlap($antiOverlap, -$min, $side: "min")
+		$condition += " and (min-width %s)" % (-$min)
+
+	unless -larger-than-scale($max)
+		-$max = -convert-to("em", -$max) if $yoyoBreakpoints.emBreakpoints
+		-$max = -adjust-overlap($antiOverlap, -$max, $side: "max")
+		$condition += " and (max-width %s)" % (-$max)
+
+	if $isIe8 and $forIe8
+		{$block} unless $block is false
+		{block}
+	else
+		@media $condition
+			{$block} unless $block is false
+			{block}
+
+at-bp($scalePoint = null, $forIe8 = false, $block = false, $antiOverlap = $yoyoBreakpoints.antiOverlap)
+	$max = -convert-string-to-scale-number($scalePoint)
+	$max = $yoyoBreakpoints.scale[$max] unless not -on-scale($max)
+
+	between-bp($scalePoint, $max, $forIe8, $block, $antiOverlap)
+
+from-bp($scalePoint = null, $forIe8 = false, $block = false, $antiOverlap = $yoyoBreakpoints.antiOverlap)
+	between-bp($scalePoint, length($yoyoBreakpoints.scale), $forIe8, $block, $antiOverlap)
+
+to-bp($scalePoint = null, $forIe8 = false, $block = false, $antiOverlap = $yoyoBreakpoints.antiOverlap)
+	between-bp(1, $scalePoint, $forIe8, $block, $antiOverlap)

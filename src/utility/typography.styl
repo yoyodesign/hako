@@ -1,0 +1,45 @@
+@require "unit"
+
+style-typography($options)
+	/**
+	 * Ensure style is set first, allowing us to then override
+	 * the weight and style if necessary.
+	 */
+	if "name" in $options
+		set-typography-style($options["name"])
+
+	padding $options["padding"] if "padding" in $options
+	margin $options["margin"] if "margin" in $options
+
+	font-weight $options["weight"] if "weight" in $options
+	font-style $options["style"] if "style" in $options
+
+	font-size $options["size"] if "size" in $options
+	text-transform $options["transform"] if "transform" in $options
+	letter-spacing $options["spacing"] if "spacing" in $options
+	line-height $options["lineHeight"] if "lineHeight" in $options
+	color $options["color"] if "color" in $options
+
+	if "responsively" in $options
+		for $key, $option in $options["responsively"]
+			if typeof($options) is "object"
+				// TODO: IE8 support
+			   +from-bp($key)
+				   style-typography($option)
+
+set-typography-style($name)
+	$customFonts = $yoyoTypography["customFonts"]
+
+	if typeof($customFonts) is "object" and $name in $customFonts
+		$font = $customFonts[$name]
+
+		$stack = unquote($font["stack"])
+
+		font-family $stack if "stack" in $font
+		font-weight $font["weight"] if "weight" in $font
+		font-style $font["style"] if "style" in $font
+		font-display $font["fontDisplay"] if "fontDisplay" in $font
+
+font-size($size)
+	font-size $size if $isIe8
+	font-size -rem($size) unless $yoyoBreakpoints["remify"] is false or $isIe8

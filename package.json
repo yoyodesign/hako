@@ -1,0 +1,29 @@
+{
+  "name": "hako",
+  "version": "0.0.1",
+  "description": "A reusable stylus library for scaffolding websites.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoyodesign/hako.git"
+  },
+  "keywords": [
+    "stylus",
+    "css",
+    "helper",
+    "library",
+    "mixins",
+    "utility"
+  ],
+  "author": "mike.barker@yoyodesign.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yoyodesign/hako/issues"
+  },
+  "homepage": "https://github.com/yoyodesign/hako#readme"
+}

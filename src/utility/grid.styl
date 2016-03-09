@@ -1,0 +1,94 @@
+-get-grid-width($columnWidth)
+	$columnWidth = $yoyoLayout["columns"] if $columnWidth < 1 or $columnWidth > $yoyoLayout["columns"]
+
+	return ($columnWidth / $yoyoLayout["columns"]) * 100%
+
+grid()
+	$gutter = $yoyoLayout["gutter"]
+	$halfGutter = $gutter / 2
+
+	display flex
+	flex-wrap wrap
+
+	/**
+	 * Doesn't use width 100% as the negative
+	 * margins will affect the overall width.
+	 */
+	min-width 100%
+	margin-top -negative($gutter)
+
+	if $supportIe8
+		margin-right -negative($halfGutter)
+		margin-left -negative($halfGutter)
+	else
+		margin-left -negative($gutter)
+
+	clear both
+
+	+below-ie10()
+		font-size 0
+
+	+above-ie9()
+		clearfix()
+
+grid-column($configs...)
+	$gutter = $yoyoLayout["gutter"]
+	$halfGutter = $gutter / 2
+
+	width 100%
+	margin-top $gutter
+
+	if $supportIe8
+		padding-right $halfGutter
+		padding-left $halfGutter
+	else
+		margin-left $gutter
+
+	+below-ie10()
+		display inline-block
+		vertical-align top
+		font-size $baseFontSize
+
+	+above-ie9()
+		float left
+
+	if $configs
+		for $config in $configs
+			$columns = $config["columns"]
+
+			if $columns
+				$width = -get-grid-width($columns)
+				$isIe8 = $config["ie8"] || false
+
+				if $width
+					if $supportIe8 == false
+						$width = unquote("calc(" + $width + " - " + $gutter + ")")
+
+					if "at" in $config
+						$at = $config["at"]
+
+						+at-bp($at)
+							width $width
+
+					else if "below" in $config or ("to" in $config && !("from" in $config))
+						$below = $config["below"] if "below" in $config
+						$below ?= $config["to"]
+
+						+below-bp($below, $isIe8)
+							width $width
+
+					else if "from" in $config
+						$from = $config["from"]
+
+						if "to" in $config
+							$to = $config["to"]
+
+							+between-bp($from, $to, $isIe8)
+								width $width
+
+						else
+							+from-bp($from, $isIe8)
+								width $width
+
+					else
+						width $width

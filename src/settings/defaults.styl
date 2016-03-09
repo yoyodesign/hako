@@ -1,0 +1,25 @@
+$yoyoDefaults ?= {}
+
+$yoyoDefaults["useReset"] = false unless "useReset" in $yoyoDefaults
+
+$yoyoDefaults["helpers"] = {} unless typeof($yoyoDefaults["helpers"]) is "object"
+$yoyoDefaults["helpers"]["useFauxLink"] = false unless "useFauxLink" in $yoyoDefaults["helpers"]
+$yoyoDefaults["helpers"]["useLinkComplex"] = false unless "useLinkComplex" in $yoyoDefaults["helpers"]
+$yoyoDefaults["helpers"]["useAccesibility"] = false unless "useAccesibility" in $yoyoDefaults["helpers"]
+
+$yoyoDefaults["forms"] = {} unless typeof($yoyoDefaults["forms"]) is "object"
+$yoyoDefaults["forms"]["useDateInput"] = false unless "useDateInput" in $yoyoDefaults["forms"]
+$yoyoDefaults["forms"]["useFieldset"] = false unless "useFieldset" in $yoyoDefaults["forms"]
+$yoyoDefaults["forms"]["useLabel"] = false unless "useLabel" in $yoyoDefaults["forms"]
+$yoyoDefaults["forms"]["useTextInput"] = false unless "useTextInput" in $yoyoDefaults["forms"]
+
+$yoyoDefaults["layout"] = {} unless typeof($yoyoDefaults["layout"]) is "object"
+$yoyoDefaults["layout"]["useContainers"] = false unless "useContainers" in $yoyoDefaults["layout"]
+$yoyoDefaults["layout"]["useGlobalLayout"] = false unless "useGlobalLayout" in $yoyoDefaults["layout"]
+
+$yoyoDefaults["typography"] = {} unless typeof($yoyoDefaults["typography"]) is "object"
+$yoyoDefaults["typography"]["useCustomFonts"] = false unless "useCustomFonts" in $yoyoDefaults["typography"]
+$yoyoDefaults["typography"]["useHeadings"] = false unless "useHeadings" in $yoyoDefaults["typography"]
+$yoyoDefaults["typography"]["useLede"] = false unless "useLede" in $yoyoDefaults["typography"]
+$yoyoDefaults["typography"]["useLists"] = false unless "useLists" in $yoyoDefaults["typography"]
+$yoyoDefaults["typography"]["useMain"] = false unless "useMain" in $yoyoDefaults["typography"]

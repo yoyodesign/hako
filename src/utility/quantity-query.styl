@@ -1,0 +1,20 @@
+quantity-query($options)
+	$min = $options["exactly"] if "exactly" in $options
+	$max = $min
+	$min ?= $options["min"] || 0
+	$max ?= $options["max"] || 0
+
+	$selector = "selector" in $options ? $options["selector"] : selector()
+
+	if $min and !$max
+		&:nth-last-of-type(n+{$min})
+		&:nth-last-of-type(n+{$min}) ~ {$selector}
+			{block}
+	else if $max and !$min
+		&:nth-last-of-type(-n+{$max}):first-of-type
+		&:nth-last-of-type(-n+{$max}):first-of-type ~ {$selector}
+			{block}
+	else
+		&:nth-last-of-type(n+{$min}):nth-last-of-type(-n+{$max}):first-of-type
+		&:nth-last-of-type(n+{$min}):nth-last-of-type(-n+{$max}):first-of-type ~ {$selector}
+			{block}
