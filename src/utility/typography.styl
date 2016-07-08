@@ -1,22 +1,22 @@
+@require "breakpoints"
 @require "unit"
 
-style-typography($options)
+hako-typography($options)
 	/**
 	 * Ensure style is set first, allowing us to then override
 	 * the weight and style if necessary.
 	 */
-	if "name" in $options
-		set-typography-style($options["name"])
+	hako-typography-style($options["fontName"]) if "fontName" in $options
 
 	padding $options["padding"] if "padding" in $options
 	margin $options["margin"] if "margin" in $options
 
-	font-weight $options["weight"] if "weight" in $options
-	font-style $options["style"] if "style" in $options
+	font-weight $options["fontWeight"] if "fontWeight" in $options
+	font-style $options["fontStyle"] if "fontStyle" in $options
 
-	font-size $options["size"] if "size" in $options
-	text-transform $options["transform"] if "transform" in $options
-	letter-spacing $options["spacing"] if "spacing" in $options
+	font-size $options["fontSize"] if "fontSize" in $options
+	text-transform $options["textTransform"] if "textTransform" in $options
+	letter-spacing $options["letterSpacing"] if "letterSpacing" in $options
 	line-height $options["lineHeight"] if "lineHeight" in $options
 	color $options["color"] if "color" in $options
 
@@ -24,22 +24,59 @@ style-typography($options)
 		for $key, $option in $options["responsively"]
 			if typeof($options) is "object"
 				// TODO: IE8 support
-			   +from-bp($key)
-				   style-typography($option)
+			   +hako-from-bp($key)
+				   hako-typography($option)
 
-set-typography-style($name)
-	$customFonts = $yoyoTypography["customFonts"]
+hako-typography-style($name)
+	$customFonts = $hako["typography"]["customFonts"]
 
 	if typeof($customFonts) is "object" and $name in $customFonts
 		$font = $customFonts[$name]
 
-		$stack = unquote($font["stack"])
+		if "fontFamily" in $font
+			$fontFamily = $font["fontFamily"]
 
-		font-family $stack if "stack" in $font
-		font-weight $font["weight"] if "weight" in $font
-		font-style $font["style"] if "style" in $font
-		font-display $font["fontDisplay"] if "fontDisplay" in $font
+			font-family unquote($fontFamily)
+			font-weight $font["fontWeight"] if "fontWeight" in $font
+			font-style $font["fontStyle"] if "fontStyle" in $font
+			font-display $font["fontDisplay"] if "fontDisplay" in $font
 
+hako-font-format($type)
+	$format = $type
+
+	if $type == "otf"
+		$format = "opentype"
+	else if $type == "woff2"
+		$format = "woff2"
+	else if $type == "woff"
+		$format = "woff"
+	else if $type == "ttf"
+		$format = "truetype"
+
+	return unquote($format)
+
+hako-font-face($fontName, $config)
+	if "fontFamily" in $config
+		@font-face
+			$fontFamily = $config["fontFamily"]
+			$fontTypes = "fontTypes" in $config ? $font["fontTypes"] : woff2 woff
+
+			font-family unquote($fontFamily)
+			font-weight $config["fontWeight"] if "fontWeight" in $config
+			font-style $config["fontStyle"] if "fontStyle" in $config
+			font-display $config["fontDisplay"] if "fontDisplay" in $config
+
+			$srcs = ()
+
+			for $type in $fontTypes
+				$src = "url('/assets/fonts/%s/%s.%s') format('%s')" % (unquote($fontName) unquote($fontName) $type hako-font-format($type))
+				push($srcs, $src)
+
+			src unquote(join(",", $srcs)) if length($srcs) > 0
+
+/**
+ * This mixin is intentionally transparent.
+ */
 font-size($size)
-	font-size $size if $isIe8
-	font-size -rem($size) unless $yoyoBreakpoints["remify"] is false or $isIe8
+	font-size $size if $hako["browser"]["isIe8"] is true
+	font-size -hako-rem($size) unless $hako["typography"]["remify"] is false or $hako["browser"]["isIe8"] is true

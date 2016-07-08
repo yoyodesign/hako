@@ -1,16 +1,12 @@
-if "label" in $yoyoForms
+if "label" in $hako["forms"]
 	label
-		$label = $yoyoForms["label"]
+		$label = $hako["forms"]["label"]
 
 		display block
-		padding $label["padding"] if "padding" in $label
 
 		cursor pointer
 
-		text-align left
-		font-size $label["fontSize"] if "fontSize" in $label
-		font-weight $label["fontWeight"] if "fontWeight" in $label
-		color $label["color"] if "color" in $label
+		hako-typography($label)
 
 		&:active
 			+ [placeholder]

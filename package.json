@@ -1,6 +1,6 @@
 {
   "name": "hako",
-  "version": "0.0.2",
+  "version": "1.0.0-beta.1",
   "description": "A reusable stylus library for scaffolding websites.",
   "main": "index.js",
   "dependencies": {},

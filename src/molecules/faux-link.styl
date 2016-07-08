@@ -1,9 +1,12 @@
-.has-faux-link
-	position relative
+@require "../utility/layout"
 
-.faux-link
-	z-index 10
-	cursor pointer
-	outline-width 0
+if $hako["use"]["molecules"]["fauxLink"] is true
+	.has-faux-link
+		position relative
 
-	absolute-fill()
+	.faux-link
+		z-index 10
+		cursor pointer
+		outline-width 0
+
+		hako-absolute-fill()

@@ -1,19 +1,21 @@
--is-unit($value, $unit)
-	return unit($value) is $unit
+-hako-is-unit($value, $unit)
+	return unit($value) is $unit if $value is a "unit"
+	return $unit
 
--em($value, $base = 16)
-	return unit($value / $base, "em") if -is-unit($value, "px")
+-hako-em($value, $base = 16)
+	return unit($value / $base, "em") if -hako-is-unit($value, "px")
 	return $value
 
--rem($value, $base = 16)
-	return unit($value / $base, "rem") if -is-unit($value, "px")
+-hako-rem($value, $base = 16)
+	return unit($value / $base, "rem") if -hako-is-unit($value, "px") is true
 	return $value
 
--unitless-lineheight($value, $pxValue)
+-hako-unitless-lineheight($value, $pxValue)
 	return round($value / $pxValue, 2)
 
--negative($value)
+-hako-negative($value)
 	return $value * -1
 
--percentage($decimal)
-	return $decimal * 100%
+-hako-percentage($decimal)
+	return $decimal * 100% if -hako-is-unit($decimal, "%") is true
+	return $decimal

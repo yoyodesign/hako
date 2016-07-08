@@ -1,6 +1,8 @@
-$yoyoLayout ?= {}
+@require "namespace"
 
-$yoyoLayout["container"] = 1360px unless "container" in $yoyoLayout
-$yoyoLayout["innerContainer"] = $yoyoLayout["container"] unless "innerContainer" in $yoyoLayout
-$yoyoLayout["columns"] = 12 unless "columns" in $yoyoLayout
-$yoyoLayout["gutter"] = 24px unless "gutter" in $yoyoLayout
+$hako["layout"] = -hako-default-options($hako["layout"], {
+	container: 1360px
+	innerContainer: 1360px
+	columns: 12
+	gutter: 24px
+})

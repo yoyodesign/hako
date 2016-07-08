@@ -1,5 +1,8 @@
-.container
-	site-container($yoyoLayout["container"])
+if $hako["use"]["layout"]["containers"] is true
+	.container
+		if "container" in $hako["layout"]
+			hako-container($hako["layout"]["container"])
 
-.inner-container
-	site-container($yoyoLayout["innerContainer"])
+	.inner-container
+		if "innerContainer" in $hako["layout"]
+			hako-container($hako["layout"]["innerContainer"])

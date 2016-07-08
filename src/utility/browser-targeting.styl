@@ -1,26 +1,49 @@
-ie8()
-	if $isIe8
+@require "block"
+
+hako-ie8($block = false)
+	 if $hako["browser"]["isIe8"] is true
+		+hako-apply-block($block)
+			{block}
+
+hako-not-ie8($block = false)
+	if $hako["browser"]["isIe8"] is not true
+		+hako-apply-block($block)
+			{block}
+
+hako-ie9($block = false)
+	if $hako["isIe9"] is true
+		+hako-apply-block($block)
+			{block}
+
+hako-not-ie9($block = false)
+	if $hako["isIe9"] is not true
+		+hako-apply-block($block)
+			{block}
+
+hako-above-ie9($block = false)
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+		+hako-apply-block($block)
+			{block}
+
+hako-below-ie10($block = false)
+	+hako-ie8($block)
 		{block}
 
-not-ie8()
-	if !$isIe8
+	+hako-ie9($block)
 		{block}
 
-ie9()
-	if $isIe9
+hako-ie10($block = false)
+	// TODO: Add IE10 support
+	// {$block} unless $block is false
+
+hako-below-ie11($block = false)
+	+hako-below-ie10($block)
 		{block}
 
-not-ie9()
-	if !$isIe9
+	+hako-ie10($block)
 		{block}
 
-below-ie10()
-	+ie8()
-		{block}
-
-	+ie9()
-		{block}
-
-above-ie9()
-	+not-ie9()
-		{block}
+hako-ie11($block = false)
+	+hako-above-ie9($block)
+		_:-ms-fullscreen, :root &
+			{block}

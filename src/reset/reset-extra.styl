@@ -1,57 +1,61 @@
-:root
-	box-sizing border-box
+if $hako["use"]["reset"]["extra"] is true
+	@require "normalize"
 
-html
-	-webkit-font-smoothing antialiased
-	-moz-osx-font-smoothing grayscale
+	html
+	:root
+		box-sizing border-box
 
-*
-	&
-	&:before
-	&:after
-		box-sizing inherit
+	html
+		-webkit-font-smoothing antialiased
+		-moz-osx-font-smoothing grayscale
 
-html
-body
-img
-abbr
-acronym
-	border 0
+	*
+		&
+		&:before
+		&:after
+			box-sizing inherit
 
-h1
-h2
-h3
-h4
-h5
-h6
-	font-size 100%
-	font-weight normal
+	html
+	body
+	img
+	abbr
+	acronym
+		border 0
 
-th
-code
-cite
-caption
-	font-weight normal
-	font-style normal
-	text-align left
+	h1
+	h2
+	h3
+	h4
+	h5
+	h6
+		font-size 100%
+		font-weight normal
 
-address
-	font-style normal
+	th
+	code
+	cite
+	caption
+		font-weight normal
+		font-style normal
+		text-align left
 
-input:focus
-input[type="search"]:focus
-	outline-offset -2px
+	address
+		font-style normal
 
-input[type="search"]
-	appearance none
-	box-sizing border-box
+	input:focus
+	input[type="search"]:focus
+		outline-offset -2px
 
-img
-video
-	max-width 100%
+	input[type="search"]
+		appearance none
+		box-sizing border-box
 
-img
-	object-fit cover
+	img
+	video
+		max-width 100%
 
-	&[width][height]
-		height auto
+	img
+		object-fit cover
+
+		&[width][height]
+			height auto

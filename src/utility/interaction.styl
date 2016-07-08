@@ -1,42 +1,35 @@
-hover($block = false)
-	&:hover
-		{$block} unless $block is false
-		{block}
+@require "block"
 
-on-interaction($block = false)
+hako-interaction($block = false)
 	&:hover
 	&:focus
-		{$block} unless $block is false
-		{block}
+		+hako-apply-block($block)
+			{block}
 
-on-focus($block = false)
+hako-focus($block = false)
 	&:focus
-		{$block} unless $block is false
-		{block}
+		+hako-apply-block($block)
+			{block}
 
-not-on-focus($block = false)
+hako-not-focus($block = false)
 	&:not(:focus)
-		{$block} unless $block is false
-		{block}
+		+hako-apply-block($block)
+			{block}
 
-faux-hover($whenTarget = false, $block = false)
+hako-faux-hover($whenTarget = false, $block = false)
 	$selector = selector()
-
-	if $whenTarget
-		$selector += ".faux-link-target"
+	$selector += ".faux-link-target" if $whenTarget is not false
 
 	/.faux-link
-		+on-interaction()
+		+hako-interaction()
 			~ {$selector}
 			~ * {$selector}
-				{$block} unless $block is false
-				{block}
+				+hako-apply-block($block)
+					{block}
 
-hover-or-faux-hover($whenTarget = false, $block = false)
-	+on-interaction()
-		{$block} unless $block is false
+hako-interaction-faux-hover($whenTarget = false, $block = false)
+	+hako-interaction($block)
 		{block}
 
-	+faux-hover($whenTarget)
-		{$block} unless $block is false
+	+hako-faux-hover($whenTarget, $block)
 		{block}

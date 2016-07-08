@@ -1,11 +1,11 @@
-if "date" in $yoyoForms
+if "date" in $hako["forms"]
 	[type="date"]
 	[type="datetime"]
 	[type="datetime-local"]
 	[type="month"]
 	[type="week"]
 	[type="time"]
-		$dateOptions = $yoyoForms["date"]
+		$dateOptions = $hako["forms"]["date"]
 
 		display block
 		width 100%
@@ -15,7 +15,7 @@ if "date" in $yoyoForms
 
 		border-width $dateOptions["borderWidth"] if "borderWidth" in $dateOptions
 		border-style $dateOptions["borderStyle"] if "borderStyle" in $dateOptions
-		border-width $dateOptions["borderWidth"] if "borderWidth" in $dateOptions
+		border-color $dateOptions["borderColor"] if "borderColor" in $dateOptions
 		border-radius $dateOptions["borderRadius"] if "borderRadius" in $dateOptions
 
 		background-color $dateOptions["backgroundColor"] if "backgroundColor" in $dateOptions

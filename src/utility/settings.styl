@@ -1,0 +1,7 @@
+@require "object"
+
+-hako-default-options($hash, $defaults = {})
+	$hash = {} if typeof($hash) is not "object"
+	$defaults = -hako-assign($defaults, $hash) if typeof($defaults) is "object"
+
+	return -hako-assign($hash, $defaults)

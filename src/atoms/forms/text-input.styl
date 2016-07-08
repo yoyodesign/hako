@@ -1,5 +1,5 @@
-if "text" in $yoyoForms
-	$text = $yoyoForms["text"]
+if "textInput" in $hako["forms"]
+	$text = $hako["forms"]["textInput"]
 
 	[type="password"]
 		&::-ms-reveal
@@ -18,6 +18,7 @@ if "text" in $yoyoForms
 	[type="password"]
 	[type="email"]
 	[type="search"]
+	[type="url"]
 	[type="number"]
 	[type="tel"]
 	textarea
@@ -61,6 +62,7 @@ if "text" in $yoyoForms
 				cursor $readOnly["cursor"] if "cursor" in $readOnly
 
 				background $readOnly["backgroundColor"] if "backgroundColor" in $readOnly
+				color $readOnly["color"] if "color" in $readOnly
 
 		if ":disabled" in $text
 			$disabled = $text[":disabled"]
@@ -70,6 +72,7 @@ if "text" in $yoyoForms
 				cursor $disabled["cursor"] if "cursor" in $disabled
 
 				background-color $disabled["backgroundColor"] if "backgroundColor" in $disabled
+				color $disabled["color"] if "color" in $disabled
 
 	textarea
 		resize vertical

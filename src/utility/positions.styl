@@ -2,12 +2,12 @@
  * Courtesy of Nib.
  */
 
--pos(type, args)
+-hako-pos($type, $args)
 	$i = 0
-	position: unquote(type)
+	position: unquote($type)
 	for j in (1..4)
-		if length(args) > $i
-			{args[$i]}: args[$i + 1] is a 'unit' ? args[$i += 1] : 0
+		if length($args) > $i
+			{$args[$i]}: $args[$i + 1] is a "unit" ? $args[$i += 1] : 0
 		$i += 1
 
 /*
@@ -27,7 +27,7 @@
  */
 
 fixed()
-	-pos('fixed', arguments)
+	-hako-pos("fixed", arguments)
 
 /*
  * Position utility.
@@ -46,7 +46,7 @@ fixed()
  */
 
 absolute()
-	-pos('absolute', arguments)
+	-hako-pos("absolute", arguments)
 
 /*
  * Position utility.
@@ -65,4 +65,4 @@ absolute()
  */
 
 relative()
-	-pos('relative', arguments)
+	-hako-pos("relative", arguments)

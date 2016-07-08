@@ -1,6 +1,9 @@
-.link-complex
-	text-decoration none
+@require "../utility/interaction"
 
-	+on-interaction()
-		.link-complex__target
-			text-decoration underline
+if $hako["use"]["molecules"]["linkComplex"] is true
+	.link-complex
+		text-decoration none
+
+		+hako-interaction()
+			.link-complex__target
+				text-decoration underline

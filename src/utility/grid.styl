@@ -1,55 +1,55 @@
--get-grid-width($columnWidth)
-	$columnWidth = $yoyoLayout["columns"] if $columnWidth < 1 or $columnWidth > $yoyoLayout["columns"]
+@require "breakpoints"
+@require "browser-targeting"
+@require "unit"
 
-	return ($columnWidth / $yoyoLayout["columns"]) * 100%
+-hako-get-grid-width($columnWidth)
+	$columnWidth = $hako["layout"]["columns"] if $columnWidth < 1 or $columnWidth > $hako["layout"]["columns"]
 
-grid()
-	$gutter = $yoyoLayout["gutter"]
+	return ($columnWidth / $hako["layout"]["columns"]) * 100%
+
+hako-grid()
+	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
-
-	display flex
-	flex-wrap wrap
 
 	/**
 	 * Doesn't use width 100% as the negative
 	 * margins will affect the overall width.
 	 */
 	min-width 100%
-	margin-top -negative($gutter)
 
-	if $supportIe8
-		margin-right -negative($halfGutter)
-		margin-left -negative($halfGutter)
+	if $hako["browser"]["supportIe8"] is true
+		margin-right -hako-negative($halfGutter)
+		margin-left -hako-negative($halfGutter)
 	else
-		margin-left -negative($gutter)
+		margin-left -hako-negative($gutter)
 
-	clear both
+	+hako-below-ie10()
+		clear both
 
-	+below-ie10()
 		font-size 0
 
-	+above-ie9()
-		clearfix()
+	+hako-above-ie9()
+		display flex
+		flex-wrap wrap
 
-grid-column($configs...)
-	$gutter = $yoyoLayout["gutter"]
+hako-grid-column($configs...)
+	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
 
 	width 100%
-	margin-top $gutter
 
-	if $supportIe8
+	if $hako["browser"]["supportIe8"] is true
 		padding-right $halfGutter
 		padding-left $halfGutter
 	else
 		margin-left $gutter
 
-	+below-ie10()
+	+hako-below-ie10()
 		display inline-block
 		vertical-align top
 		font-size $baseFontSize
 
-	+above-ie9()
+	+hako-above-ie9()
 		float left
 
 	if $configs
@@ -57,24 +57,24 @@ grid-column($configs...)
 			$columns = $config["columns"]
 
 			if $columns
-				$width = -get-grid-width($columns)
-				$isIe8 = $config["ie8"] || false
+				$width = -hako-get-grid-width($columns)
+				$forIe8 = $config["ie8"] || false
 
 				if $width
-					if $supportIe8 == false
+					if $hako["browser"]["supportIe8"] is false
 						$width = unquote("calc(" + $width + " - " + $gutter + ")")
 
 					if "at" in $config
 						$at = $config["at"]
 
-						+at-bp($at)
+						+hako-at-bp($at)
 							width $width
 
 					else if "below" in $config or ("to" in $config && !("from" in $config))
 						$below = $config["below"] if "below" in $config
 						$below ?= $config["to"]
 
-						+below-bp($below, $isIe8)
+						+hako-below-bp($below, $forIe8)
 							width $width
 
 					else if "from" in $config
@@ -83,11 +83,11 @@ grid-column($configs...)
 						if "to" in $config
 							$to = $config["to"]
 
-							+between-bp($from, $to, $isIe8)
+							+hako-between-bp($from, $to, $forIe8)
 								width $width
 
 						else
-							+from-bp($from, $isIe8)
+							+hako-from-bp($from, $forIe8)
 								width $width
 
 					else
