@@ -1,8 +1,9 @@
-html
-body
-	position relative
-	min-height 100% if $isIe8
-	min-height 100vh unless $isIe8
+if $hako["use"]["layout"]["globalLayout"] is true
+	html
+	body
+		position relative
+		min-height 100% if $hako["browser"]["isIe8"] is true
+		min-height 100vh unless $hako["browser"]["isIe8"] is true
 
-html
-	overflow-y scroll
+	html
+		overflow-y scroll

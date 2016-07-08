@@ -1,7 +1,8 @@
-$baseFontSize ?= 16px
+@require "namespace"
 
-$yoyoTypography ?= {}
-$yoyoTypography["baseFontSize"] = $baseFontSize unless "baseFontSize" in $yoyoTypography
-$yoyoTypography["useLocalFonts"] = false unless "useLocalFonts" in $yoyoTypography
-$yoyoTypography["ledeSize"] = 1.125 unless "ledeSize" in $yoyoTypography
-$yoyoTypography["remify"] = false unless "remify" in $yoyoTypography
+$hako["typography"] = -hako-default-options($hako["typography"], {
+	baseFontSize: 16px
+	useLocalFonts: false
+	lede: {}
+	remify: true
+})

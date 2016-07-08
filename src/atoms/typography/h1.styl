@@ -1,0 +1,10 @@
+@require "headings"
+
+if "h1" in $hako["typography"]
+	h1
+	.alpha
+		hako-typography($hako["typography"]["h1"])
+
+else if "alpha" in $hako["typography"]
+	.alpha
+		hako-typography($hako["typography"]["alpha"])

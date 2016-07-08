@@ -1,42 +1,38 @@
-clearfix()
+@require "positions"
+
+hako-clearfix()
 	// http://cssmojo.com/the-very-latest-clearfix-reloaded/
 	&:after
 		content ""
 		display block
 		clear both
 
-absolute-fill()
-	position absolute
-	top 0
-	right 0
-	bottom 0
-	left 0
+hako-absolute-fill()
+	absolute top right bottom left
 	width 100%
 	height 100%
 	transform none
 
-site-container($maxWidth)
+hako-container($maxWidth, $displayType = false)
 	width 100%
 
-	center-element($maxWidth)
+	hako-center-element($maxWidth, $displayType)
 
-center-element($maxWidth = false, $displayType = false)
+hako-center-element($maxWidth = false, $displayType = false)
 	display $displayType unless $displayType is false
 	max-width $maxWidth unless $maxWidth is false
 	margin-right auto
 	margin-left auto
 
-vertically-center()
-	position absolute
-	top 50%
+hako-vertically-center()
+	absolute top 50%
 	transform translateY(-50%)
 
-horizontally-center()
-	position absolute
-	left 50%
+hako-horizontally-center()
+	absolute left 50%
 	transform translateX(-50%)
 
-center-x-y($addPosition = true)
+hako-center-x-y($addPosition = true)
 	position absolute if $addPosition is true
 	top 50%
 	left 50%

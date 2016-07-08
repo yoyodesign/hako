@@ -1,6 +1,12 @@
 module.exports = function(config) {
 	return function(style) {
-		
+
+		style
+			.include(__dirname)
+			.import("src/settings/namespace.styl")
+			.import("src/utility/*")
+		;
+
 		if(typeof config === "string")
 		{
 			style.import(config);
@@ -8,7 +14,10 @@ module.exports = function(config) {
 
 		style
 			.include(__dirname)
-			.import("src/_index.styl")
+			.import("src/settings/**/*")
+			.import("src/reset/**/*")
+			.import("src/atoms/**/*")
+			.import("src/molecules/**/*")
 		;
 	};
 };

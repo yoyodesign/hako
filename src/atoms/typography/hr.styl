@@ -1,0 +1,10 @@
+if "hr" in $hako["typography"]
+	hr
+		$hr = $hako["typography"]["hr"]
+
+		display block
+		padding $hr["padding"] if "padding" in $hr
+		margin $hr["margin"] if "margin" in $hr
+		border-width $hr["borderWidth"] if "borderWidth" in $hr
+		border-style $hr["borderStyle"] if "borderStyle" in $hr
+		border-color $hr["borderColor"] if "borderColor" in $hr

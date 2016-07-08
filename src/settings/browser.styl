@@ -1,2 +1,6 @@
-$isIe8 ?= false
-$isIe9 ?= false
+@require "namespace"
+
+$hako["browser"] = -hako-default-options($hako["browser"], {
+	isIe8: false
+	isIe9: false
+})

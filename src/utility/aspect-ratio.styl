@@ -1,28 +1,27 @@
-enforce-aspect-ratio($ratio)
+@require "feature"
+@require "layout"
+
+hako-aspect-ratio($ratio)
 	position relative
 	overflow hidden
 
-	+apply-aspect-ratio($ratio)
-		display block
-		height 0
+	&:after
 		content ""
 
-apply-aspect-ratio($ratio)
-	&:after
+		display block
+		height 0
 		padding-bottom $ratio
 
-		{block}
-
-fit-in-element()
+hako-fit-in-element()
 	width auto
 	height auto
 	max-width 125%
 	min-width 100%
 	min-height 100%
 
-	center-x-y()
+	hako-center-x-y()
 
-	@supports (object-fit cover)
+	+hako-supports("(object-fit: cover)")
 		position absolute
 		top 0
 		left 0
@@ -31,16 +30,18 @@ fit-in-element()
 
 		transform none
 
-enforce-media-ratio($ratio, $mediaType, $fit = false)
-	enforce-aspect-ratio($ratio);
+hako-media-ratio($ratio, $mediaType, $fit = false)
+	$fit = cover if $fit is true
+
+	hako-aspect-ratio($ratio)
 
 	{$mediaType}
-		fit-in-element($ratio)
+		object-fit $fit unless $fit is false
 
-		object-fit $fit if $fit != false
+		hako-fit-in-element($ratio)
 
-enforce-image-ratio($ratio, $fit = false)
-	enforce-media-ratio($ratio, "img, figure", $fit)
+hako-image-ratio($ratio, $fit = false)
+	hako-media-ratio($ratio, "img, figure", $fit)
 
-enforce-video-ratio($ratio, $fit = false)
-	enforce-media-ratio($ratio, "video", $fit)
+hako-video-ratio($ratio, $fit = false)
+	hako-media-ratio($ratio, "video", $fit)

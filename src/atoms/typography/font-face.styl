@@ -1,0 +1,6 @@
+if $hako["use"]["typography"]["localFonts"] is true
+	$customFonts = $hako["typography"]["customFonts"]
+
+	if typeof($customFonts) is "object"
+		for $key, $font in $customFonts
+			hako-font-face($key, $font)

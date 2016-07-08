@@ -1,10 +1,10 @@
-if "fieldset" in $yoyoForms
+if "fieldset" in $hako["forms"]
 	fieldset
-		$fieldset = $yoyoForms["fieldset"]
+		$fieldset = $hako["forms"]["fieldset"]
 
 		padding $fieldset["padding"] if "padding" in $fieldset
 		margin $fieldset["margin"] if "margin" in $fieldset
 		border-width $fieldset["borderWidth"] if "borderWidth" in $fieldset
 		border-style $fieldset["borderStyle"] if "borderStyle" in $fieldset
-		border-radius $fieldset["borderRadius"] if "borderRadius" in $fieldset
 		border-color $fieldset["borderColor"] if "borderColor" in $fieldset
+		border-radius $fieldset["borderRadius"] if "borderRadius" in $fieldset

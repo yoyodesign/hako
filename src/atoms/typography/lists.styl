@@ -1,20 +1,19 @@
-if "ul" in $yoyoTypography or "ol" in $yoyoTypography
-	ol
-	ul
-		list-style-position outside
-
+if "ul" in $hako["typography"] or "ol" in $hako["typography"]
 	li
 		&:last-child
 			margin-bottom 0
 
 
 for $list in "ul" "ol"
-	if $list in $yoyoTypography
-		$config = $yoyoTypography[$list]
+	if $list in $hako["typography"]
+		$config = $hako["typography"][$list]
 
 		{$list}
 			padding $config["padding"] if "padding" in $config
 			margin $config["margin"] if "margin" in $config
+
+			list-style-position $config["listStylePosition"] if "listStylePosition" in $config
+			list-style-position outside unless "listStylePosition" in $config
 
 			if "li" in $config
 				$li = $config["li"]
@@ -26,4 +25,3 @@ for $list in "ul" "ol"
 					ul
 					ol
 						margin-bottom 0
-

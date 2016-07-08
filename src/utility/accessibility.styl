@@ -1,4 +1,6 @@
-visuallyhidden()
+@require "block"
+
+hako-visuallyhidden()
 	position absolute
 	overflow hidden
 	padding 0
@@ -8,7 +10,7 @@ visuallyhidden()
 	border 0
 	clip rect(0, 0, 0, 0)
 
-visuallyshow()
+hako-visuallyshow()
 	position static
 	overflow visible
 	width auto
@@ -16,10 +18,12 @@ visuallyshow()
 	margin 0
 	clip auto
 
-no-js()
+hako-no-js($block = false)
 	html.no-js &
-		{block}
+		+hako-apply-block($block)
+			{block}
 
-js-only()
+hako-js-only($block = false)
 	html:not(.no-js) &
-		{block}
+		+hako-apply-block($block)
+			{block}
