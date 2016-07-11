@@ -13,10 +13,21 @@ hako-absolute-fill()
 	height 100%
 	transform none
 
-hako-container($maxWidth, $displayType = false)
-	width 100%
+hako-container($config)
+	if "maxWidth" in $config
+		width 100%
 
-	hako-center-element($maxWidth, $displayType)
+		$maxWidth = $config["maxWidth"]
+		$displayType = block
+		$displayType = $config["displayType"] if "displayType" in $config
+
+		padding $config["padding"] if "padding" in $config
+
+		if $config["center"] is true
+			hako-center-element($maxWidth, $displayType)
+		else
+			display $displayType
+			max-width $maxWidth
 
 hako-center-element($maxWidth = false, $displayType = false)
 	display $displayType unless $displayType is false
