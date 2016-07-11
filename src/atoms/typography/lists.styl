@@ -1,9 +1,3 @@
-if "ul" in $hako["typography"] or "ol" in $hako["typography"]
-	li
-		&:last-child
-			margin-bottom 0
-
-
 for $list in "ul" "ol"
 	if $list in $hako["typography"]
 		$config = $hako["typography"][$list]
@@ -13,7 +7,7 @@ for $list in "ul" "ol"
 			margin $config["margin"] if "margin" in $config
 
 			list-style-position $config["listStylePosition"] if "listStylePosition" in $config
-			list-style-position outside unless "listStylePosition" in $config
+			list-style-type $config["listStyleType"] if "listStyleType" in $config
 
 			if "li" in $config
 				$li = $config["li"]
@@ -21,6 +15,12 @@ for $list in "ul" "ol"
 				li
 					padding $li["padding"] if "padding" in $li
 					margin $li["margin"] if "margin" in $li
+
+					&:first-child
+						margin-top 0
+
+					&:last-child
+						margin-bottom 0
 
 					ul
 					ol
