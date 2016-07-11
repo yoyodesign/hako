@@ -7,7 +7,8 @@
 
 	return ($columnWidth / $hako["layout"]["columns"]) * 100%
 
-hako-grid()
+hako-grid($config = {})
+	$config = {} if typeof($config) is not "object"
 	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
 
@@ -15,34 +16,40 @@ hako-grid()
 	 * Doesn't use width 100% as the negative
 	 * margins will affect the overall width.
 	 */
+	display flex
+	flex-wrap wrap
 	min-width 100%
 
-	if $hako["browser"]["supportIe8"] is true
-		margin-right -hako-negative($halfGutter)
-		margin-left -hako-negative($halfGutter)
-	else
-		margin-left -hako-negative($gutter)
+	if $config["columnGap"] is not false
+		if $hako["browser"]["supportIe8"] is true
+			margin-right -hako-negative($halfGutter)
+			margin-left -hako-negative($halfGutter)
+		else
+			margin-left -hako-negative($gutter)
+
+	if $config["rowGap"] is true
+		margin-top -hako-negative($gutter)
+
+	if "columnConfig" in $config
+		$columnConfig = $config["columnConfig"]
+		$selector = $columnConfig["selector"]
+		$columns = $columnConfig["columns"]
+
+		if typeof($selector) is "string"
+			{$selector}
+				hako-grid-column({ columnGap: $config["columnGap"], rowGap: $config["rowGap"] }, $columns)
 
 	+hako-below-ie10()
 		clear both
 
 		font-size 0
 
-	+hako-above-ie9()
-		display flex
-		flex-wrap wrap
-
-hako-grid-column($configs...)
+hako-grid-column()
 	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
-
-	width 100%
-
-	if $hako["browser"]["supportIe8"] is true
-		padding-right $halfGutter
-		padding-left $halfGutter
-	else
-		margin-left $gutter
+	$isColConfig = typeof(arguments[0]) is "object" and ("columnGap" in arguments[0] or "rowGap" in arguments[0])
+	$addColumnGap = true
+	$addRowGap = false
 
 	+hako-below-ie10()
 		display inline-block
@@ -52,11 +59,32 @@ hako-grid-column($configs...)
 	+hako-above-ie9()
 		float left
 
-	if $configs
-		for $config in $configs
+	if $isColConfig
+		$colConfig = arguments[0]
+		$addColumnGap = $colConfig["columnGap"] is not false
+		$addRowGap = $colConfig["rowGap"] is true
+
+	if $addColumnGap is true
+		if $hako["browser"]["supportIe8"] is true
+			padding-right $halfGutter
+			padding-left $halfGutter
+		else
+			margin-left $gutter
+
+	if $addRowGap is true
+		margin-top $gutter
+
+
+	for $config, $key in arguments
+		if typeof($config) is "object"
 			$columns = $config["columns"]
 
-			if $columns
+			if "columns" in $config is false
+				for $colConfig in $config
+					if typeof($colConfig) is "object"
+						hako-grid-column({ columnGap: false }, $colConfig)
+			else
+				$columns = $config["columns"]
 				$width = -hako-get-grid-width($columns)
 				$forIe8 = $config["ie8"] || false
 
@@ -70,11 +98,10 @@ hako-grid-column($configs...)
 						+hako-at-bp($at)
 							width $width
 
-					else if "below" in $config or ("to" in $config && !("from" in $config))
-						$below = $config["below"] if "below" in $config
-						$below ?= $config["to"]
+					else if "to" in $config and !("from" in $config)
+						$to = $config["to"]
 
-						+hako-below-bp($below, $forIe8)
+						+hako-to-bp($config["to"], $forIe8)
 							width $width
 
 					else if "from" in $config
