@@ -3,6 +3,9 @@ if "hr" in $hako["typography"]
 		$hr = $hako["typography"]["hr"]
 
 		display block
+		width $hr["width"] if "width" in $hr
+		max-width $hr["maxWidth"] if "maxWidth" in $hr
+		min-width $hr["minWidth"] if "minWidth" in $hr
 		padding $hr["padding"] if "padding" in $hr
 		margin $hr["margin"] if "margin" in $hr
 		border-width $hr["borderWidth"] if "borderWidth" in $hr
