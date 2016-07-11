@@ -14,10 +14,7 @@ module.exports = function(config) {
 
 		style
 			.include(__dirname)
-			.import("src/settings/**/*")
-			.import("src/reset/**/*")
-			.import("src/atoms/**/*")
-			.import("src/molecules/**/*")
+			.import("src/index.styl")
 		;
 	};
 };
