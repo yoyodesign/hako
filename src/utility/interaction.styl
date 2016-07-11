@@ -1,8 +1,10 @@
 @require "block"
 
-hako-interaction($block = false)
-	&:hover
-	&:focus
+hako-interaction($asWellAs = false, $block = false)
+	$selector = "&:hover, &:focus"
+	$selector = $asWellAs + "," + $selector unless $asWellAs is false
+
+	{$selector}
 		+hako-apply-block($block)
 			{block}
 
@@ -27,7 +29,7 @@ hako-faux-hover($whenTarget = false, $block = false)
 				+hako-apply-block($block)
 					{block}
 
-hako-interaction-faux-hover($whenTarget = false, $block = false)
+hako-hover-faux-hover($whenTarget = false, $block = false)
 	+hako-interaction($block)
 		{block}
 

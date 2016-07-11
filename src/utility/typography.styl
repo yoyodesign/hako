@@ -1,7 +1,10 @@
 @require "breakpoints"
+@require "object"
 @require "unit"
 
-hako-typography($options)
+hako-typography($options, $override = {})
+	$options = -hako-assign($options, $override) if typeof($override) is "object"
+
 	/**
 	 * Ensure style is set first, allowing us to then override
 	 * the weight and style if necessary.
@@ -73,6 +76,7 @@ hako-font-face($fontName, $config)
 				push($srcs, $src)
 
 			src unquote(join(",", $srcs)) if length($srcs) > 0
+
 
 /**
  * This mixin is intentionally transparent.

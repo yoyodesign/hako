@@ -1,7 +1,7 @@
 {
   "name": "hako",
-  "version": "1.0.0-beta.1",
-  "description": "A reusable stylus library for scaffolding websites.",
+  "version": "1.0.0-beta.2",
+  "description": "Hako is an open-source Stylus framework for building scalable front end solutions.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
@@ -13,17 +13,28 @@
     "url": "git+https://github.com/yoyodesign/hako.git"
   },
   "keywords": [
+    "boilerplate",
+	"css",
+	"framework",
+	"front-end",
+	"helper",
+	"library",
+	"mixins",
+	"responsive",
+	"rwd",
     "stylus",
-    "css",
-    "helper",
-    "library",
-    "mixins",
-    "utility"
+    "utility",
+	"web"
   ],
   "author": "mike.barker@yoyodesign.com",
-  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ResponsiveBP/Responsive/blob/master/MIT-LICENSE.txt"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/yoyodesign/hako/issues"
   },
-  "homepage": "https://github.com/yoyodesign/hako#readme"
+  "homepage": "https://hako.style/"
 }

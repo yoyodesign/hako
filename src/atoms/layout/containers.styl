@@ -1,8 +1,6 @@
 if $hako["use"]["layout"]["containers"] is true
 	.container
-		if "container" in $hako["layout"]
-			hako-container($hako["layout"]["container"])
+		hako-container($hako["layout"]["container"]) if "container" in $hako["layout"]
 
 	.inner-container
-		if "innerContainer" in $hako["layout"]
-			hako-container($hako["layout"]["innerContainer"])
+		hako-container($hako["layout"]["innerContainer"]) if "innerContainer" in $hako["layout"]

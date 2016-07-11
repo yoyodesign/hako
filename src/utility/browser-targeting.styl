@@ -11,16 +11,18 @@ hako-not-ie8($block = false)
 			{block}
 
 hako-ie9($block = false)
-	if $hako["isIe9"] is true
+	if $hako["browser"]["isIe9"] is true
 		+hako-apply-block($block)
 			{block}
 
 hako-not-ie9($block = false)
-	if $hako["isIe9"] is not true
+	if $hako["browser"]["isIe9"] is not true
 		+hako-apply-block($block)
 			{block}
 
 hako-above-ie9($block = false)
+	// TODO: Add other browsers
+
 	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
 		+hako-apply-block($block)
 			{block}
