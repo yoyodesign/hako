@@ -6,6 +6,6 @@
 @require "h5"
 @require "h6"
 
-if "giga" in $hako["typography"]
+if $hako["use"]["typography"]["headings"] is true and "giga" in $hako["typography"]
 	.giga
 		hako-typography($hako["typography"]["giga"])

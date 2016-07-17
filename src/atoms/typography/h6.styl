@@ -1,10 +1,11 @@
 @require "headings"
 
-if "h6" in $hako["typography"]
-	h6
-	.zeta
-		hako-typography($hako["typography"]["h6"])
+if $hako["use"]["typography"]["headings"] is true
+	if "h6" in $hako["typography"]
+		h6
+		.zeta
+			hako-typography($hako["typography"]["h6"])
 
-else if "zeta" in $hako["typography"]
-	.zeta
-		hako-typography($hako["typography"]["zeta"])
+	else if "zeta" in $hako["typography"]
+		.zeta
+			hako-typography($hako["typography"]["zeta"])
