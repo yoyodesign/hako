@@ -1,6 +1,7 @@
 if $hako["use"]["typography"]["p"] is true and "p" in $hako["typography"]
 	p
-		hako-typography($hako["typography"]["p"])
+		main &
+			hako-typography($hako["typography"]["p"])
 
 		&:first-child
 			margin-top 0
