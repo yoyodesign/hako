@@ -1,10 +1,11 @@
 @require "headings"
 
-if "h5" in $hako["typography"]
-	h5
-	.epsilon
-		hako-typography($hako["typography"]["h5"])
+if $hako["use"]["typography"]["headings"] is true
+	if "h5" in $hako["typography"]
+		h5
+		.epsilon
+			hako-typography($hako["typography"]["h5"])
 
-else if "epsilon" in $hako["typography"]
-	.epsilon
-		hako-typography($hako["typography"]["epsilon"])
+	else if "epsilon" in $hako["typography"]
+		.epsilon
+			hako-typography($hako["typography"]["epsilon"])

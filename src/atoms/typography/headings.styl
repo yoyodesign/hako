@@ -1,12 +1,13 @@
-if "headings" in $hako["typography"]
-	h1
-	h2
-	h3
-	h4
-	h5
-	h6
-		hako-typography($hako["typography"]["headings"])
-
+h1
+h2
+h3
+h4
+h5
+h6
+	if $hako["use"]["typography"]["headings"] is true
+		if "headings" in $hako["typography"]
+			hako-typography($hako["typography"]["headings"])
+			
 		&:first-child
 			margin-top 0
 
