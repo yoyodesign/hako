@@ -21,6 +21,10 @@ hako-typography($options, $override = {})
 	text-transform $options["textTransform"] if "textTransform" in $options
 	letter-spacing $options["letterSpacing"] if "letterSpacing" in $options
 	line-height $options["lineHeight"] if "lineHeight" in $options
+	text-decoration $options["textDecoration"] if "textDecoration" in $options
+	text-decoration-color $options["textDecorationColor"] if "textDecorationColor" in $options
+	text-decoration-line $options["textDecorationLine"] if "textDecorationLine" in $options
+	text-decoration-style $options["textDecorationStyle"] if "textDecorationStyle" in $options
 	color $options["color"] if "color" in $options
 
 	if "responsively" in $options
@@ -76,6 +80,25 @@ hako-font-face($fontName, $config)
 				push($srcs, $src)
 
 			src unquote(join(",", $srcs)) if length($srcs) > 0
+
+hako-link($config)
+	$config = {} if typeof($config) is not "object"
+
+	hako-typography($config)
+
+	if ":visited" in $config
+		&:visited
+			hako-link($config[":visited"])
+
+	if ":hover" or ":focus" in $config
+		$focus = ":hover" in $config ? $config[":hover"] : $config[":focus"]
+
+		+hako-interaction()
+			hako-typography($focus)
+
+	if ":active" in $config
+		&:active
+			hako-link($config[":active"])
 
 
 /**
