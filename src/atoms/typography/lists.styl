@@ -10,6 +10,12 @@ if $hako["use"]["typography"]["lists"] is true
 				list-style-position $config["listStylePosition"] if "listStylePosition" in $config
 				list-style-type $config["listStyleType"] if "listStyleType" in $config
 
+				&:first-child
+					margin-top 0
+
+				&:last-child
+					margin-bottom 0
+
 				if "li" in $config
 					$li = $config["li"]
 

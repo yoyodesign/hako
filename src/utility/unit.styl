@@ -17,5 +17,9 @@
 	return $value * -1
 
 -hako-percentage($decimal)
-	return $decimal * 100% if -hako-is-unit($decimal, "%") is true
+	if typeof($decimal) is "unit"
+		$percentage = $decimal * 100%
+
+		return $percentage if -hako-is-unit($percentage, "%")
+		​
 	return $decimal
