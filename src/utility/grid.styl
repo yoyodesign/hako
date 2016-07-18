@@ -81,7 +81,7 @@ hako-apply-grid-column($config)
 		else
 			width $width
 
-hako-grid-column($configOrColConfig, $config = {})
+hako-grid-column($configOrColConfig = {}, $config = {})
 	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
 	$isGapConfig = typeof(arguments[0]) is "object" and ("columnGap" in arguments[0] or "rowGap" in arguments[0])
@@ -119,3 +119,6 @@ hako-grid-column($configOrColConfig, $config = {})
 		for $config in $configs
 			if typeof($config) is "object"
 				hako-apply-grid-column($config)
+
+	else
+		width 100%
