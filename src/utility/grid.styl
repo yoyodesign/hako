@@ -43,14 +43,14 @@ hako-grid($config = {})
 
 		font-size 0
 
-hako-apply-grid-column($config)
+hako-apply-grid-column($config, $addColumnGap = true)
 	$gutter = $hako["layout"]["gutter"]
 	$columns = $config["columns"]
 	$width = -hako-get-grid-width($columns)
 	$forIe8 = $config["ie8"] || false
-
+	
 	if $width
-		if $hako["browser"]["supportIe8"] is false
+		if $hako["browser"]["supportIe8"] is false and $addColumnGap is true
 			$width = unquote("calc(" + $width + " - " + $gutter + ")")
 
 		if "at" in $config
@@ -114,11 +114,11 @@ hako-grid-column($configOrColConfig = {}, $config = {})
 	$configs = $isGapConfig ? $config : $configOrColConfig
 
 	if "columns" in $configs
-		hako-apply-grid-column($configs)
+		hako-apply-grid-column($configs, $addColumnGap)
 	else if length($configs)
 		for $config in $configs
 			if typeof($config) is "object"
-				hako-apply-grid-column($config)
+				hako-apply-grid-column($config, $addColumnGap)
 
 	else
 		width 100%
