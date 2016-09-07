@@ -1,6 +1,6 @@
 {
   "name": "hako",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Hako is an open-source Stylus framework for building scalable front end solutions.",
   "main": "index.js",
   "dependencies": {},
