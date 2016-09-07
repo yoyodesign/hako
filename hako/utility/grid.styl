@@ -92,10 +92,14 @@ hako-grid-column($configOrColConfig = {}, $config = {})
 	float left
 
 	+hako-below-ie10()
+		$baseFontSize = $hako["typography"]["baseFontSize"]
+
 		float none
 		display inline-block
 		vertical-align top
+
 		font-size $baseFontSize
+
 
 	if $isGapConfig
 		$colConfig = arguments[0]
