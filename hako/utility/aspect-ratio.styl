@@ -1,0 +1,49 @@
+@require "feature"
+@require "layout"
+@require "positions"
+@require "unit"
+
+hako-aspect-ratio($ratio)
+	$ratio = -hako-percentage($ratio)
+
+	position relative
+	overflow hidden
+
+	&:after
+		content ""
+
+		display block
+		height 0
+		padding-bottom $ratio
+
+hako-fit-in-element($fit = false)
+	width auto
+	height auto
+	min-width 100%
+	min-height 100%
+
+	hako-center-axis()
+
+	if $fit is true
+		+hako-supports("(object-fit: cover)")
+			absolute top left
+			max-width 100%
+			max-height 100%
+
+			transform none
+
+hako-media-ratio($ratio, $mediaType, $fit = false)
+	hako-aspect-ratio($ratio)
+
+	{$mediaType}
+		$fit = cover if $fit is true
+
+		object-fit $fit unless $fit is false
+
+		hako-fit-in-element($fit)
+
+hako-image-ratio($ratio, $fit = false)
+	hako-media-ratio($ratio, "img", $fit)
+
+hako-video-ratio($ratio, $fit = false)
+	hako-media-ratio($ratio, "video", $fit)

@@ -1,0 +1,9 @@
+if $hako["use"]["layout"]["containers"] is true
+	.container
+		hako-container($hako["layout"]["container"]) if "container" in $hako["layout"]
+
+	.inner-container
+		hako-container($hako["layout"]["innerContainer"]) if "innerContainer" in $hako["layout"]
+
+	.form-container
+		hako-container($hako["layout"]["formContainer"]) if "formContainer" in $hako["layout"]

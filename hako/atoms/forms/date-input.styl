@@ -1,0 +1,18 @@
+@require "placeholder"
+
+if "date" in $hako["forms"]
+	[type="date"]
+	[type="datetime"]
+	[type="datetime-local"]
+	[type="month"]
+	[type="week"]
+	[type="time"]
+		display block
+		width 100%
+		appearance none
+
+		hako-input-field($hako["forms"]["date"])
+
+		&::-ms-clear
+		&::-ms-expand
+			display none

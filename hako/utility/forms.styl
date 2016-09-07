@@ -1,0 +1,32 @@
+hako-input-field($config)
+	$config = {} if !($config is a "object")
+
+	border $config["border"] if "border" in $config
+	border-width $config["borderWidth"] if "borderWidth" in $config
+	border-radius $config["borderRadius"] if "borderRadius" in $config
+	border-style $config["borderStyle"] if "borderStyle" in $config
+	border-color $config["borderColor"] if "borderColor" in $config
+
+	background-color $config["backgroundColor"] if "backgroundColor" in $config
+	box-shadow $config["boxShadow"] if "boxShadow" in $config
+
+	hako-typography($config)
+
+	if "::placeholder" in $config
+		&::placeholder
+			hako-typography($config["::placeholder"])
+
+	if ":focus" in $config
+		&:not([readonly]):not(:disabled)
+			outline-width 0
+
+			&:focus
+				hako-input-field($config[":focus"])
+
+	if "readonly" in $config
+		&[readonly]
+			hako-input-field($config["readonly"])
+
+	if ":disabled" in $config
+		&[disabled]
+			hako-input-field($config[":disabled"])

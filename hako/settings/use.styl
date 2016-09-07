@@ -1,0 +1,32 @@
+@require "namespace"
+
+$hako["use"] = -hako-default-settings($hako["use"], {
+	reset: {
+		normalize: false
+		extra: false
+	}
+	layout: {
+		globalLayout: false
+		containers: false
+	}
+	typography: {
+		a: false
+		base: false
+		body: false
+		headings: false
+		hr: false
+		lede: false
+		lists: false
+		localFonts: false
+		main: false
+		p: false
+		html: false
+		strong: false
+	}
+	helpers: {
+		accessibility: false
+		fauxLink: false
+		linkComplex: false
+		media: false
+	}
+})

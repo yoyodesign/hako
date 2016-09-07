@@ -1,0 +1,27 @@
+if "formField" in $hako["forms"]
+	$formField = $hako["forms"]["formField"]
+
+	.form-field
+		padding $formField["padding"] if "padding" in $formField
+		margin $formField["margin"] if "margin" in $formField
+		border $formField["border"] if "border" in $formField
+		border-width $formField["borderWidth"] if "borderWidth" in $formField
+		border-style $formField["borderStyle"] if "borderStyle" in $formField
+		border-color $formField["borderColor"] if "borderColor" in $formField
+
+		&:first-child
+			margin-top 0
+
+		&:last-child
+			margin-bottom 0
+
+		&--align-center
+			text-align center
+			justify-content center // just incase this is a flex item
+
+		&--align-right
+			text-align right
+			justify-content flex-end // just incase this is a flex item
+
+		&--inline
+			display inline-block

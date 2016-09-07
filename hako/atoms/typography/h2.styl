@@ -1,0 +1,15 @@
+@require "headings"
+@require "h6"
+@require "h5"
+@require "h4"
+@require "h3"
+
+if $hako["use"]["typography"]["headings"] is true
+	if "h2" in $hako["typography"]
+		main h2,
+		.beta
+			hako-typography($hako["typography"]["h2"])
+
+	else if "beta" in $hako["typography"]
+		.beta
+			hako-typography($hako["typography"]["beta"])

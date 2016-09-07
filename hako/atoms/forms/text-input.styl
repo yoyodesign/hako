@@ -1,0 +1,37 @@
+@require "placeholder"
+
+if "textInput" in $hako["forms"]
+	$text = $hako["forms"]["textInput"]
+
+	[type="password"]
+		&::-ms-reveal
+			display none
+
+	[type="number"]
+		&::-webkit-inner-spin-button
+		&::-webkit-outer-spin-button
+			display none
+
+	[type="search"]
+		&::-webkit-clear-button
+			display none
+
+	[type="text"]
+	[type="password"]
+	[type="email"]
+	[type="search"]
+	[type="url"]
+	[type="number"]
+	[type="tel"]
+	textarea
+		display block
+		width 100%
+		appearance none
+
+		&::-ms-clear
+			display none
+
+		hako-input-field($text)
+
+	textarea
+		resize vertical

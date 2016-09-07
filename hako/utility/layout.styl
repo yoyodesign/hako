@@ -1,0 +1,54 @@
+@require "positions"
+@require "spacing"
+
+hako-clearfix()
+	// http://cssmojo.com/the-very-latest-clearfix-reloaded/
+	&:after
+		content " "
+		display block
+		clear both
+
+hako-absolute-fill()
+	absolute top right bottom left
+	width 100%
+	height 100%
+	transform none
+
+hako-container($config)
+	$config = {} if !($config is a "object")
+
+	if "maxWidth" in $config
+		width 100%
+
+		$maxWidth = $config["maxWidth"]
+		$displayType = block
+		$displayType = $config["displayType"] if "displayType" in $config
+
+		if "padding" in $config
+			hako-add-spacing("padding", $config["padding"])
+
+		if $config["center"] is true
+			hako-center-element($maxWidth, $displayType)
+		else
+			display $displayType
+			max-width $maxWidth
+
+hako-center-element($maxWidth = false, $displayType = false)
+	display $displayType unless $displayType is false
+	max-width $maxWidth unless $maxWidth is false
+	margin-right auto
+	margin-left auto
+
+hako-vertically-center()
+	absolute top 50%
+	transform translateY(-50%)
+
+hako-horizontally-center()
+	absolute left 50%
+	transform translateX(-50%)
+
+hako-center-axis($addPosition = true)
+	position absolute if $addPosition is true
+	top 50%
+	left 50%
+	transform translate(-50%, -50%)

@@ -1,6 +1,6 @@
 {
   "name": "hako",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-rc.1",
   "description": "Hako is an open-source Stylus framework for building scalable front end solutions.",
   "main": "index.js",
   "dependencies": {},
@@ -30,7 +30,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ResponsiveBP/Responsive/blob/master/MIT-LICENSE.txt"
+      "url": "https://github.com/yoyodesign/hako/blob/master/MIT-LICENSE.txt"
     }
   ],
   "bugs": {

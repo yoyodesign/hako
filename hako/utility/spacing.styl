@@ -1,0 +1,45 @@
+@require "breakpoints"
+
+hako-add-spacing($spacingType, $top = false, $right = false, $bottom = false, $left = false)
+	if arguments[1] is a "object"
+		$config = arguments[1]
+
+		for $key, $spacing in $config
+			+hako-from-bp($key)
+				if $spacing is a "object"
+					$top = "topBottom" in $spacing ? $spacing["topBottom"] : $spacing["top"]
+					$right = "rightLeft" in $spacing ? $spacing["rightLeft"] : $spacing["right"]
+					$bottom = "topBottom" in $spacing ? $spacing["topBottom"] : $spacing["bottom"]
+					$left = "rightLeft" in $spacing ? $spacing["rightLeft"] : $spacing["left"]
+
+					hako-add-spacing($spacingType, $top, $right, $bottom, $left)
+				else
+					hako-add-spacing($spacingType, $spacing)
+
+	else if $right is false and $bottom is false and $left is false and $top is a "unit"
+		$spacing = $top
+		$top = $spacing[0]
+		$right = length($spacing) < 2 ? $top : $spacing[1]
+		$bottom = length($spacing) < 3 ? $top : $spacing[2]
+		$left = length($spacing) < 4 ? $right : $spacing[3]
+
+	{$spacingType}-top $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
+	{$spacingType}-right $right if $right is a "ident" or ($right is a "unit" and length($right) is 1)
+	{$spacingType}-bottom $bottom if $bottom is a "ident" or ($bottom is a "unit" and length($bottom) is 1)
+	{$spacingType}-left $left if $left is a "ident" or ($left is a "unit" and length($left) is 1)
+
+hako-module-spacing($spacingType, $top = false, $right = false, $bottom = false, $left = false, $removeVerticalSpacing = true)
+	hako-add-spacing($spacingType, $top, $right, $bottom, $left)
+
+	if $removeVerticalSpacing is true
+		&:first-child
+			{$spacingType}-top 0
+
+		&:last-child
+			{$spacingType}-bottom 0
+
+hako-module-margin($top = false, $right = false, $bottom = false, $left = false, $removeVerticalSpacing = true)
+	hako-module-spacing("margin", $top, $right, $bottom, $left, $removeVerticalSpacing: $removeVerticalSpacing)
+
+hako-module-padding($top = false, $right = false, $bottom = false, $left = false, $removeVerticalSpacing = false)
+	hako-module-spacing("padding", $top, $right, $bottom, $left, $removeVerticalSpacing: $removeVerticalSpacing)

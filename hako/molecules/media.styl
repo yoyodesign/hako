@@ -1,0 +1,22 @@
+if $hako["use"]["helpers"]["media"] is true
+	.media
+		$root = selector()
+
+		&
+		&__body
+			overflow hidden
+
+		&:not({$root}--rev)
+			// These commas are important! Stylus won't compile properly without.
+			{$root}__image,
+			> img
+				float left
+
+		&--rev
+			// These commas are important! Stylus won't compile properly without.
+			{$root}__image,
+			> img
+				float right
+
+		img
+			display block

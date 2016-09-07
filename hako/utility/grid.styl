@@ -1,0 +1,127 @@
+@require "breakpoints"
+@require "browser-targeting"
+@require "unit"
+
+-hako-get-grid-width($columnWidth)
+	$columnWidth = $hako["layout"]["columns"] if $columnWidth < 1 or $columnWidth > $hako["layout"]["columns"]
+
+	return ($columnWidth / $hako["layout"]["columns"]) * 100%
+
+hako-grid($config = {})
+	$config = {} if !($config is a "object")
+	$gutter = $hako["layout"]["gutter"]
+	$halfGutter = $gutter / 2
+	$addRowGap = $config["rowGap"] is true
+	$addColumnGap = $config["columnGap"] is true
+
+	display flex
+	flex-wrap wrap
+
+	if $addColumnGap is true
+		if $hako["browser"]["supportIe8"] is true
+			margin-right -hako-negative($halfGutter)
+			margin-left -hako-negative($halfGutter)
+		else
+			margin-left -hako-negative($gutter)
+
+	if $addRowGap is true
+		margin-top -hako-negative($gutter)
+
+	if $config["columnConfigs"] is a "object"
+		for $key, $config in $config["columnConfigs"]
+			if $config is a "object"
+				{$key}
+					hako-grid-column({ rowGap: $addRowGap, columnGap: $addColumnGap }, $config)
+
+	else if "columnSelector" in $config
+		$selector = $config["columnSelector"]
+		$columnConfig = $config["columnConfig"]
+
+		if typeof($selector) is "string"
+			{$selector}
+				hako-grid-column({ rowGap: $addRowGap, columnGap: $addColumnGap }, $columnConfig)
+
+	+hako-below-ie10()
+		clear both
+
+		font-size 0
+
+hako-apply-grid-column($config)
+	$gutter = $hako["layout"]["gutter"]
+	$columns = $config["columns"]
+	$width = -hako-get-grid-width($columns)
+	$forIe8 = $config["ie8"] || false
+
+	if $width
+		if $hako["browser"]["supportIe8"] is false
+			$width = unquote("calc(" + $width + " - " + $gutter + ")")
+
+		if "at" in $config
+			$at = $config["at"]
+
+			+hako-at-bp($at)
+				width $width
+
+		else if "to" in $config and !("from" in $config)
+			$to = $config["to"]
+
+			+hako-to-bp($config["to"], $forIe8)
+				width $width
+
+		else if "from" in $config
+			$from = $config["from"]
+
+			if "to" in $config
+				$to = $config["to"]
+
+				+hako-between-bp($from, $to, $forIe8)
+					width $width
+
+			else
+				+hako-from-bp($from, $forIe8)
+					width $width
+
+		else
+			width $width
+
+hako-grid-column($configOrColConfig = {}, $config = {})
+	$gutter = $hako["layout"]["gutter"]
+	$halfGutter = $gutter / 2
+	$isGapConfig = typeof(arguments[0]) is "object" and ("columnGap" in arguments[0] or "rowGap" in arguments[0])
+	$addColumnGap = true
+	$addRowGap = false
+
+	+hako-below-ie10()
+		display inline-block
+		vertical-align top
+		font-size $baseFontSize
+
+	+hako-above-ie9()
+		float left
+
+	if $isGapConfig
+		$colConfig = arguments[0]
+		$addColumnGap = $colConfig["columnGap"] is not false
+		$addRowGap = $colConfig["rowGap"] is true
+
+	if $addColumnGap is true
+		if $hako["browser"]["supportIe8"] is true
+			padding-right $halfGutter
+			padding-left $halfGutter
+		else
+			margin-left $gutter
+
+	if $addRowGap is true
+		margin-top $gutter
+
+	$configs = $isGapConfig ? $config : $configOrColConfig
+
+	if "columns" in $configs
+		hako-apply-grid-column($configs)
+	else if length($configs)
+		for $config in $configs
+			if typeof($config) is "object"
+				hako-apply-grid-column($config)
+
+	else
+		width 100%

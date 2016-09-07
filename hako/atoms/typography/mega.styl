@@ -1,0 +1,12 @@
+@require "headings"
+@require "h6"
+@require "h5"
+@require "h4"
+@require "h5"
+@require "h2"
+@require "h1"
+@require "kilo"
+
+if $hako["use"]["typography"]["headings"] is true and "mega" in $hako["typography"]
+	.mega
+		hako-typography($hako["typography"]["mega"])

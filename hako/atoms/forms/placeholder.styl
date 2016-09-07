@@ -1,0 +1,11 @@
+if "placeholder" in $hako["forms"]
+	$placeholder = $hako["forms"]["placeholder"]
+	$placeholder = {} if !($placeholder is a "object")
+
+	::placeholder
+		hako-typography($placeholder)
+
+	if ":focus" in $placeholder
+		&:focus
+			&::placeholder
+				hako-typography($placeholder[":focus"])

@@ -1,0 +1,15 @@
+@require "headings"
+@require "h1"
+@require "h2"
+@require "h3"
+@require "h4"
+@require "h5"
+@require "h6"
+@require "tera"
+@require "giga"
+@require "mega"
+@require "kilo"
+
+if $hako["use"]["typography"]["lede"] is true and "lede" in $hako["typography"]
+	.lede
+		hako-typography($hako["typography"]["lede"])
