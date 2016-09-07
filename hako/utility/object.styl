@@ -1,0 +1,10 @@
+-hako-assign($hash1, $hash2)
+	if $hash1 is a "object" and $hash2 is a "object"
+		for $key, $value in $hash2
+			if $value is a "object"
+				$hash1[$key] = -hako-assign($hash1[$key], $value)
+			else
+				$hash1[$key] = $value
+
+	return $hash1 if $hash1
+	return $hash2

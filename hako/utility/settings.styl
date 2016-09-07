@@ -1,0 +1,13 @@
+@require "object"
+
+-hako-default-settings($hash, $defaults = {})
+	$hash = {} if !($hash is a "object")
+	$defaults = {} if !($defaults is a "object")
+
+	for $key, $value in $defaults
+		if $value is a "object"
+			$hash[$key] = -hako-default-settings($hash[$key], $value)
+		else if $key in $hash is false
+			$hash[$key] = $value
+
+	return $hash

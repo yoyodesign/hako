@@ -1,0 +1,18 @@
+if "label" in $hako["forms"]
+	label
+		$label = $hako["forms"]["label"]
+
+		display block
+		cursor pointer
+
+		hako-typography($label)
+
+		&.label--disabled
+			cursor default
+
+		&.label--inline
+			display inline-block
+
+			+ input
+				display inline-block
+				width auto

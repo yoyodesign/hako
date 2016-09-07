@@ -1,0 +1,45 @@
+@require "block"
+
+hako-ie8($block = false)
+	 if $hako["browser"]["isIe8"] is true
+		+hako-apply-block($block)
+			{block}
+
+hako-not-ie8($block = false)
+	if $hako["browser"]["isIe8"] is not true
+		+hako-apply-block($block)
+			{block}
+
+hako-ie9($block = false)
+	if $hako["browser"]["isIe9"] is true
+		+hako-apply-block($block)
+			{block}
+
+hako-not-ie9($block = false)
+	if $hako["browser"]["isIe9"] is not true
+		+hako-apply-block($block)
+			{block}
+
+hako-above-ie9($block = false)
+	if $hako["browser"]["isIe8"] is not true and $hako["browser"]["isIe9"] is not true
+		$selector = selector()
+		$selector = "" if $selector is ":root" or $selector is "html"
+
+		/ _:-ms-input-placeholder, / :root {$selector}
+			+hako-apply-block($block)
+				{block}
+
+hako-below-ie10($block = false)
+	+hako-ie8($block)
+		{block}
+
+	+hako-ie9($block)
+		{block}
+
+hako-ie11($block = false)
+	+hako-above-ie9($block)
+		$selector = selector()
+		$selector = "" if $selector is ":root" or $selector is "html"
+
+		/ _:-ms-fullscreen, / :root {$selector}
+			{block}

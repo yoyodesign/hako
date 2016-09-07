@@ -1,0 +1,69 @@
+if $hako["use"]["reset"]["extra"] is true
+	@require "normalize"
+
+	html
+	:root
+		box-sizing border-box
+
+	html
+		-webkit-font-smoothing antialiased
+		-moz-osx-font-smoothing grayscale
+
+	*
+		&
+		&:before
+		&:after
+			box-sizing inherit
+
+	html
+	body
+	img
+	abbr
+	acronym
+		border 0
+
+	h1
+	h2
+	h3
+	h4
+	h5
+	h6
+		font-size 100%
+		font-weight normal
+
+	th
+	code
+	cite
+	caption
+		font-weight normal
+		font-style normal
+		text-align left
+
+	address
+		font-style normal
+
+	fieldset
+		// Changes fieldsets to remove min-content min-width
+		min-width 100%
+
+	input:focus
+	input[type="search"]:focus
+		outline-offset -2px
+
+	input[type="search"]
+		appearance none
+		box-sizing border-box
+
+	img
+	video
+		max-width 100%
+
+	img
+		object-fit cover
+
+		&[width][height]
+			height auto
+
+	summary
+		// Removes the arrow from the <summary> element
+		display block
