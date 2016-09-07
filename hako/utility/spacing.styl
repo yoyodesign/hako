@@ -23,10 +23,13 @@ hako-add-spacing($spacingType, $top = false, $right = false, $bottom = false, $l
 		$bottom = length($spacing) < 3 ? $top : $spacing[2]
 		$left = length($spacing) < 4 ? $right : $spacing[3]
 
-	{$spacingType}-top $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
-	{$spacingType}-right $right if $right is a "ident" or ($right is a "unit" and length($right) is 1)
-	{$spacingType}-bottom $bottom if $bottom is a "ident" or ($bottom is a "unit" and length($bottom) is 1)
-	{$spacingType}-left $left if $left is a "ident" or ($left is a "unit" and length($left) is 1)
+	if $top is $right and $bottom $right and $right is $left
+		{$spacingType} $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
+	else
+		{$spacingType}-top $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
+		{$spacingType}-right $right if $right is a "ident" or ($right is a "unit" and length($right) is 1)
+		{$spacingType}-bottom $bottom if $bottom is a "ident" or ($bottom is a "unit" and length($bottom) is 1)
+		{$spacingType}-left $left if $left is a "ident" or ($left is a "unit" and length($left) is 1)
 
 hako-module-spacing($spacingType, $top = false, $right = false, $bottom = false, $left = false, $removeVerticalSpacing = true)
 	hako-add-spacing($spacingType, $top, $right, $bottom, $left)

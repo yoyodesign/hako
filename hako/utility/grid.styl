@@ -12,7 +12,7 @@ hako-grid($config = {})
 	$gutter = $hako["layout"]["gutter"]
 	$halfGutter = $gutter / 2
 	$addRowGap = $config["rowGap"] is true
-	$addColumnGap = $config["columnGap"] is true
+	$addColumnGap = $config["columnGap"] is not false
 
 	display flex
 	flex-wrap wrap
@@ -42,8 +42,6 @@ hako-grid($config = {})
 				hako-grid-column({ rowGap: $addRowGap, columnGap: $addColumnGap }, $columnConfig)
 
 	+hako-below-ie10()
-		clear both
-
 		font-size 0
 
 hako-apply-grid-column($config, $addColumnGap = true)
@@ -51,7 +49,7 @@ hako-apply-grid-column($config, $addColumnGap = true)
 	$columns = $config["columns"]
 	$width = -hako-get-grid-width($columns)
 	$forIe8 = $config["ie8"] || false
-	
+
 	if $width
 		if $hako["browser"]["supportIe8"] is false and $addColumnGap is true
 			$width = unquote("calc(" + $width + " - " + $gutter + ")")
@@ -91,13 +89,13 @@ hako-grid-column($configOrColConfig = {}, $config = {})
 	$addColumnGap = true
 	$addRowGap = false
 
+	float left
+
 	+hako-below-ie10()
+		float none
 		display inline-block
 		vertical-align top
 		font-size $baseFontSize
-
-	+hako-above-ie9()
-		float left
 
 	if $isGapConfig
 		$colConfig = arguments[0]
@@ -124,4 +122,9 @@ hako-grid-column($configOrColConfig = {}, $config = {})
 				hako-apply-grid-column($config, $addColumnGap)
 
 	else
-		width 100%
+		$width = 100%
+
+		if $hako["browser"]["supportIe8"] is false and $addColumnGap is true
+			$width = unquote("calc(" + $width + " - " + $gutter + ")")
+
+		width $width
