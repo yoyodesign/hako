@@ -23,7 +23,7 @@ hako-add-spacing($spacingType, $top = false, $right = false, $bottom = false, $l
 		$bottom = length($spacing) < 3 ? $top : $spacing[2]
 		$left = length($spacing) < 4 ? $right : $spacing[3]
 
-	if $top is $right and $bottom $right and $right is $left
+	if $top is $right and $bottom is $right and $right is $left
 		{$spacingType} $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
 	else
 		{$spacingType}-top $top if $top is a "ident" or ($top is a "unit" and length($top) is 1)
