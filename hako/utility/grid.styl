@@ -19,6 +19,8 @@ hako-grid($config = {})
 	flex-wrap wrap
 	width $addColumnGap and ($hako["browser"]["supportIe8"] is not true) ? "calc(100% + %s)" % $gutter : 100% if $addWidth is true
 
+	hako-clearfix()
+
 	if $addColumnGap is true
 		if $hako["browser"]["supportIe8"] is true
 			margin-right -hako-negative($halfGutter)
