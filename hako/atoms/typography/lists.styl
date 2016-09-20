@@ -5,11 +5,11 @@ if $hako["use"]["typography"]["lists"] is true
 
 			{$list}
 				main &
-					padding $config["padding"] if "padding" in $config
-					margin $config["margin"] if "margin" in $config
-
 					list-style-position $config["listStylePosition"] if "listStylePosition" in $config
 					list-style-type $config["listStyleType"] if "listStyleType" in $config
+
+					hako-module-padding($config["padding"]) if "padding" in $config
+					hako-module-margin($config["margin"], $removeVerticalSpacing: false) if "margin" in $config
 
 				&:first-child
 					margin-top 0
@@ -22,8 +22,8 @@ if $hako["use"]["typography"]["lists"] is true
 
 					li
 						main &
-							padding $li["padding"] if "padding" in $li
-							margin $li["margin"] if "margin" in $li
+							hako-module-padding($li["padding"]) if "padding" in $li
+							hako-module-margin($li["margin"], $removeVerticalSpacing: false) if "margin" in $li
 
 						&:first-child
 							margin-top 0
