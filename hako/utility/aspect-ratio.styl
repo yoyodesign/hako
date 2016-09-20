@@ -16,7 +16,7 @@ hako-aspect-ratio($ratio)
 		height 0
 		padding-bottom $ratio
 
-hako-fit-in-element($fit = false)
+hako-fit-in-element($fit = true)
 	width auto
 	height auto
 	min-width 100%
@@ -43,8 +43,8 @@ hako-media-ratio($ratio, $mediaType, $fit = false)
 
 		hako-fit-in-element($fit)
 
-hako-image-ratio($ratio, $fit = false)
+hako-image-ratio($ratio, $fit = true)
 	hako-media-ratio($ratio, "img", $fit)
 
-hako-video-ratio($ratio, $fit = false)
+hako-video-ratio($ratio, $fit = true)
 	hako-media-ratio($ratio, "video", $fit)
