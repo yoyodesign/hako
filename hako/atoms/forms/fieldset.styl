@@ -1,12 +1,13 @@
 if "fieldset" in $hako["forms"]
 	fieldset
 		$fieldset = $hako["forms"]["fieldset"]
-			
+
 		min-width $fieldset["minWidth"] if "minWidth" in $fieldset
-		padding $fieldset["padding"] if "padding" in $fieldset
-		margin $fieldset["margin"] if "margin" in $fieldset
 		border $fieldset["border"] if "border" in $fieldset
 		border-width $fieldset["borderWidth"] if "borderWidth" in $fieldset
 		border-style $fieldset["borderStyle"] if "borderStyle" in $fieldset
 		border-color $fieldset["borderColor"] if "borderColor" in $fieldset
 		border-radius $fieldset["borderRadius"] if "borderRadius" in $fieldset
+
+		hako-module-padding($fieldset["padding"]) if "padding" in $fieldset
+		hako-module-margin($fieldset["margin"]) if "margin" in $fieldset
