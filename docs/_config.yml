@@ -1,0 +1,33 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Hako
+email: info@yoyodesign.com
+description: > # this means to ignore newlines until "baseurl:"
+  Hako is an open-source Stylus framework for building scalable front end solutions.
+
+url: "localhost:4000"
+baseurl: "" # the subpath of your site, e.g. /blog
+twitter_username: yoyodesign
+github_username:  yoyodesign
+# repository: yoyodesign.github.io/hako
+
+# Build settings
+markdown: kramdown
+# theme: minima
+
+# Outputting
+permalink: /blog/:year/:month/:day/:title/
+exclude: [Run.bat,gulpfile.js,package.json,node_modules,src]
