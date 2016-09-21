@@ -1,3 +1,3 @@
-echo Starting Jekyll site
-bundle exec jekyll serve
+echo Starting gulp task to build css and jekyllLoggerll site
+gulp
 exit %errorlevel%

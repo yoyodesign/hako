@@ -1,3 +1,104 @@
-$hako["typography"] = {
+@require "../colors"
+@require "../variables"
+//@require "../animation"
 
+$hako["typography"] = {
+	customFonts: {
+		primary: {
+			fontFamily: "'Open sans', sans-serif"
+			fontDisplay: swap
+			fontWeight: 300
+			fontStyle: normal
+		}
+		secondary: {
+			fontFamily: "'Lato', sans-serif"
+			fontDisplay: swap
+			fontWeight: 700
+			fontStyle: normal
+		}
+	}
+
+	main: {
+		fontName: "primary"
+		color: $darkGrey
+	}
+
+	h1: {
+		fontName: "secondary"
+		fontSize: 60px
+		lineHeight: 1
+		margin: 0
+		color: $blue
+		responsively: {
+			smed: {
+				fontSize: 70px
+			}
+			l: {
+				fontSize: 112px
+			}
+		}
+	}
+
+	h2: {
+		fontName: "secondary"
+		fontSize: 40px
+		margin: 0 0 40px
+		color: $blue
+		lineHeight: 1
+		letterSpacing: 0.01em
+		responsively: {
+			smed: {
+				fontSize: 50px
+			}
+			l: {
+				fontSize: 56px
+			}
+		}
+	}
+
+	h3: {
+		fontName: "secondary"
+		fontSize: 32px
+		lineHeight: 1.15
+		letterSpacing: 0.01em
+		margin: 0 0 30px
+		color: $blue
+		responsively: {
+			reg: {
+				fontSize: 45px
+			}
+		}
+	}
+
+	h4: {
+		fontName: "secondary"
+		fontSize: 34px
+		lineHeight: 1.1
+		letterSpacing: 0.02em
+		color: $blue
+	}
+
+	h5: {
+		fontName: "secondary"
+		fontSize: 24px
+		lineHeight: 1
+		color: $blue
+	}
+
+	h6: {
+		fontName: "secondary"
+		fontSize: 20px
+		lineHeight: 1
+		color: $blue
+	}
+
+	p: {
+		fontName: "primary"
+		fontSize: 16px
+		lineHeight: 1
+	}
+
+	strong: {
+		fontWeight: 700
+	}
 }

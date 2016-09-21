@@ -31,3 +31,10 @@ markdown: kramdown
 # Outputting
 permalink: /blog/:year/:month/:day/:title/
 exclude: [Run.bat,gulpfile.js,package.json,node_modules,src]
+
+keep_files: [assets]
+
+collections:
+  docs:
+    output: true
+    permalink: /docs/:path/

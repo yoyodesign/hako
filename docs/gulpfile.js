@@ -11,7 +11,7 @@ const srcRoot = `src/`;
 const destRoot = `_site/`;
 const paths = {
 	cssSrc: `${srcRoot}stylus/style*.styl`,
-	cssDest: `${destRoot}css`
+	cssDest: `${destRoot}assets/css`
 };
 
 const plumberOpts = {
@@ -22,32 +22,30 @@ const plumberOpts = {
 };
 
 const createCssTask = (watch) => {
-	return () => {
-		return gulp
-			.src(paths.cssSrc)
-			.pipe(plugins.plumber(plumberOpts))
-			.pipe(plugins.stylus({
-				compress: !watch,
-				use: [
-					hako("settings/hako/*")
-				]
-			}))
-			.pipe(plugins.autoprefixer({
-				browsers: ["last 3 versions"]
-			}))
-			.pipe(gulp.dest(paths.cssDest))
-			.pipe(plugins.livereload())
-		;
-	};
+	console.log("return");
+	gulp.src(paths.cssSrc)
+		.pipe(plugins.plumber(plumberOpts))
+		.pipe(plugins.stylus({
+			compress: !watch,
+			use: [
+				hako("settings/hako/*")
+			]
+		}))
+		.pipe(plugins.autoprefixer({
+			browsers: ["last 3 versions"]
+		}))
+		.pipe(gulp.dest("assets/css"))
+		.pipe(gulp.dest(paths.cssDest))
+		.pipe(browserSync.reload({stream: true}))
+	;
 };
 
 gulp.task("jekyll", () => {
-  const jekyll = child.spawn("jekyll.bat", ["build",
-    "--watch",
-    "--incremental",
-    "--drafts"
-  ]);
-
+   const jekyll = child.spawn("jekyll.bat", ["build",
+     "--watch",
+     "--incremental",
+     "--drafts"
+   ]);
   const jekyllLogger = (buffer) => {
     buffer.toString()
       .split(/\n/)
@@ -67,9 +65,11 @@ gulp.task('serve', () => {
     }
   });
 
-  gulp.watch(`${srcRoot}stylus/**/*.styl`, ["css"]);
+  gulp.watch(`${srcRoot}stylus/**/*.styl`, ["cssWatch"]);
 });
 
 gulp.task("css", createCssTask());
+gulp.task("cssWatch", createCssTask(true));
 
-gulp.task("default", ["jekyll","css","serve"]);
+gulp.task("default", ["css", "jekyll"]);
+gulp.task("watch", ["jekyll","serve"]);
