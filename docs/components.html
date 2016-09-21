@@ -1,0 +1,262 @@
+---
+layout: default
+title: Components
+---
+
+<style>
+	#components details > *:last-child {
+		margin-bottom: 20px;
+	}
+
+	#components details summary {
+		margin-bottom: 20px;
+		cursor: pointer;
+	}
+
+	#components details details {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+</style>
+
+<div class="inner-container" id="components">
+	<!--Typography-->
+	<details>
+		<summary>Typography</summary>
+
+		<!--Headings-->
+		<details>
+			<summary>Headings</summary>
+
+			<div>
+				<h1>This is a H1 tag</h1>
+				<h2>This is a H2 tag</h2>
+				<h3>This is a H3 tag</h3>
+				<h4>This is a H4 tag</h4>
+				<h5>This is a H5 tag</h5>
+				<h6>This is a H6 tag</h6>
+			</div>
+		</details>
+
+		<!--Main Typography-->
+		<details>
+			<summary>Main typography</summary>
+
+			<div>
+				<p>This is a paragraph tag. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis blandit enim, ut pharetra nibh. Sed porttitor, ex ac rhoncus pharetra, est augue mattis tellus, egestas egestas mauris tellus id orci. Etiam efficitur maximus rhoncus. Maecenas suscipit, ante vitae interdum tincidunt, lacus nisi semper ligula, eu condimentum magna erat nec est. </p>
+				<p><a href="#">This is a text link</a></p>
+				<p><strong>Strong is used to indicate strong importance</strong></p>
+				<p><em>This text has added emphasis</em></p>
+				<p>The <b>b element</b> is stylistically different text from normal text, without any special importance</p>
+				<p>The <i>i element</i> is text that is set off from the normal text</p>
+				<p>The <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation</p>
+				<p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
+				<p><s>This text has a strikethrough</s></p>
+				<p>Superscript<sup>Â®</sup></p>
+				<p>Subscript for things like H<sub>2</sub>O</p>
+				<p><small>This small text is small for for fine print, etc.</small></p>
+				<p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+				<p>Keybord input: <kbd>Cmd</kbd></p>
+				<p><q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation</q></p>
+				<p>
+					<cite>This is a citation</cite>
+				</p><p>The <dfn>dfn element</dfn> indicates a definition.</p>
+				<p>The <mark>mark element</mark> indicates a highlight</p>
+				<p><code>This is what inline code looks like.</code></p>
+				<p><samp>This is sample output from a computer program</samp></p>
+				<p>The <var>variarble element</var>, such as <var>x</var> = <var>y</var></p>
+			</div>
+		</details>
+
+
+		<details>
+			<summary>Blockquote</summary>
+
+			<div>
+				<figure>
+					<blockquote>
+						<p>"This is a block quote, check out how awesome it is"</p>
+					</blockquote>
+					<figcaption>
+						<cite>
+							<strong>John Smith</strong>
+							<br />
+							<a href="#">Link to</a> Spontanious Moose Explosion Specialist
+						</cite>
+					</figcaption>
+				</figure>
+			</div>
+		</details>
+	</details>
+
+	<!--Lists-->
+	<details>
+		<summary>Lists</summary>
+
+		<!--Unordered List-->
+		<details>
+			<summary>Unordered List</summary>
+
+			<div>
+				<ul>
+					<li>Unordered list item 1</li>
+					<li>Unordered list item 2</li>
+					<li>Unordered list item 3</li>
+					<li>Unordered list item 4</li>
+				</ul>
+			</div>
+		</details>
+
+		<!--Ordered List-->
+		<details>
+			<summary>Ordered List</summary>
+
+			<div>
+				<ol>
+					<li>Unordered list item 1</li>
+					<li>Unordered list item 2</li>
+					<li>Unordered list item 3</li>
+					<li>Unordered list item 4</li>
+				</ol>
+			</div>
+		</details>
+
+	</details>
+
+	<!--Forms-->
+	<details>
+		<summary>Forms</summary>
+
+		<!--Forms - Text fields-->
+		<details>
+			<summary>Text fields</summary>
+
+			<div>
+				<label for="text">Text Input<abbr title="Required">*</abbr></label>
+				<input id="text" type="text" placeholder="Text Input">
+
+				<label for="password">Password</label>
+				<input id="password" type="password" placeholder="Type your Password">
+
+				<label for="webaddress">Web Address</label>
+				<input id="webaddress" type="url" placeholder="http://yoursite.com">
+
+				<label for="emailaddress">Email Address</label>
+				<input id="emailaddress" type="email" placeholder="name@email.com">
+
+				<label for="search">Search</label>
+				<input id="search" type="search" placeholder="Enter Search Term">
+
+				<label for="text">Number Input<abbr title="Required">*</abbr></label>
+				<input id="text" type="number" placeholder="Enter a Number" pattern="[0-9]*">
+
+				<label for="textarea">Textarea</label>
+				<textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
+			</div>
+
+		</details>
+
+		<!--Forms - Select-->
+		<details>
+			<summary>Select input</summary>
+			<div class="form-field">
+				<label for="selectOption">Select box with label</label>
+				<select for="selectOption">
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+					<option>Option 4</option>
+					<option>Option 5</option>
+					<option>Option 6</option>
+				</select>
+			</div>
+
+			<div class="form-field">
+				<label for="selectOption" class="visuallyhidden">Select box with label</label>
+				<select for="selectOption">
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+					<option>Option 4</option>
+					<option>Option 5</option>
+					<option>Option 6</option>
+				</select>
+			</div>
+		</details>
+
+		<!--Forms - Checkbox-->
+		<details>
+			<summary>Checkbox</summary>
+			<div>
+				<input id="checkbox1" name="checkbox" type="checkbox" checked="checked">
+				<label for="checkbox1">
+					Choice 1
+				</label>
+
+				<input id="checkbox2" name="checkbox" type="checkbox">
+				<label for="checkbox2">
+					Choice 2
+				</label>
+			</div>
+		</details>
+
+		<!--Forms - Radio button-->
+		<details>
+			<summary>Radio Button</summary>
+
+			<div>
+				<input id="radio1" name="radio" type="radio" checked="checked">
+				<label for="radio1">
+					Option 1
+				</label>
+
+				<input id="radio2" name="radio" type="radio">
+				<label for="radio2">
+					Option 2
+				</label>
+			</div>
+		</details>
+
+		<!--Forms - HTML5 fields-->
+		<details>
+			<summary>HTML5 Fields</summary>
+
+			<label for="in">Number input</label>
+			<input type="number" id="in" min="0" max="10" value="5">
+
+			<label for="idd">Date input</label>
+			<input type="date" id="idd" value="1970-01-01">
+		</details>
+	</details>
+
+	<!--Tables-->
+	<details>
+		<summary>Table</summary>
+
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Table Heading 1</th>
+						<th>Table Heading 2</th>
+						<th>Table Heading 3</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>Table Footer 1</th>
+						<th>Table Footer 2</th>
+						<th>Table Footer 3</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>Table Cell 1</td>
+						<td>Table Cell 2</td>
+						<td>Table Cell 3</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</details>
+</div>

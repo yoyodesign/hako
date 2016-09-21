@@ -18,7 +18,7 @@ $hako["typography"] = {
 		}
 	}
 
-	main: {
+	body: {
 		fontName: "primary"
 		color: $darkGrey
 	}
@@ -27,7 +27,7 @@ $hako["typography"] = {
 		fontName: "secondary"
 		fontSize: 60px
 		lineHeight: 1
-		margin: 0
+		margin: 0 0 40px
 		color: $blue
 		responsively: {
 			smed: {
@@ -75,6 +75,7 @@ $hako["typography"] = {
 		fontSize: 34px
 		lineHeight: 1.1
 		letterSpacing: 0.02em
+		margin: 0 0 16px
 		color: $blue
 	}
 
@@ -82,6 +83,7 @@ $hako["typography"] = {
 		fontName: "secondary"
 		fontSize: 24px
 		lineHeight: 1
+		margin: 0 0 16px
 		color: $blue
 	}
 
@@ -89,6 +91,7 @@ $hako["typography"] = {
 		fontName: "secondary"
 		fontSize: 20px
 		lineHeight: 1
+		margin: 0 0 16px
 		color: $blue
 	}
 
@@ -96,6 +99,19 @@ $hako["typography"] = {
 		fontName: "primary"
 		fontSize: 16px
 		lineHeight: 1
+	}
+
+	a: {
+		color: $blue
+		textDecoration: none
+
+		":focus": {
+			textDecoration: underline
+		}
+	}
+
+	pre: {
+		padding: 20px
 	}
 
 	strong: {
