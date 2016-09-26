@@ -2,6 +2,8 @@
 
 Ensure you have ruby installed - If on windows, use [rubyinstaller] You will also need to install the RubyDevKit
 
+http://jekyll-windows.juthilo.com/1-ruby-and-devkit/
+
 ###Step 2:
 
 Open you favourite CLI in the root of the project
