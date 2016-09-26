@@ -1,10 +1,10 @@
 ---
 layout: doc
 title:  Accessibility
-navigation_weight: 4
-group: utilities
+nav_group: utilities
 ---
-# Accessibility
+
+{% include navigation.html type=site.docs group="utilities" back=true %}
 
 ```
 .module

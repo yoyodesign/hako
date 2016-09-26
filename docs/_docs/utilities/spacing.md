@@ -1,10 +1,10 @@
 ---
 layout: doc
 title:  Spacing
-navigation_weight: 4
-group: utilities
+nav_group: utilities
 ---
-## Module Spacing
+
+{% include navigation.html type=site.docs group="utilities" back=true %}
 
 ```
 .module
