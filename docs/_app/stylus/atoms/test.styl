@@ -1,0 +1,23 @@
+$noJsStyle =
+    color red
+
+
+$jsOnlyStyle =
+    color red
+
+.foo
+    +hako-no-js()
+        background red
+
+    +hako-js-only()
+        background green
+
+/***********
+OR
+************/
+.bar
+    +hako-no-js($noJsStyle)
+        display block
+.bar
+    +hako-js-only($jsOnlyStyle)
+        display block

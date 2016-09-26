@@ -1,13 +1,13 @@
 <nav>
   <ul>
-    {% assign navigation_pages = {{include.type}} | sort: 'nav_order' %}
-	{% if include.back %}
+    {% assign navigation_pages = {{include.type}} | sort: "nav_order" %}
+	<!-- {% if include.back %}
 		<li>
 			<a href="{{ page.parent.url }}">
 				NEEDS TO GO BACK UP ONE LEVEL
 			</a>
 		</li>
-	{% endif %}
+	{% endif %} -->
 
 	{% for p in navigation_pages %}
 		{% if p.nav_group %}
