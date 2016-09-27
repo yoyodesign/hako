@@ -94,10 +94,10 @@ html:not(.no-js) .foo {
 **Usage**
 
 ```
-$style1
+$style1 =
     content "style 1"
 
-$style2
+$style2 =
     content "style 2"
 
 .bar
@@ -124,10 +124,10 @@ html:not(.no-js) .bar {
 **Usage**
 
 ```
-$style1
+$style1 =
     content "style 1"
 
-$style2
+$style2 =
     content "style 2"
 
 .baz
@@ -157,10 +157,10 @@ html:not(.no-js) .baz {
 **Usage**
 
 ```
-$style1
+$style1 =
     content "style 1"
 
-$style3
+$style3 =
     content "style 3"
 
 .foobar
